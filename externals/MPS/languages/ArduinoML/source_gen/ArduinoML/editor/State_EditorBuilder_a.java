@@ -71,6 +71,7 @@ import org.jetbrains.mps.openapi.language.SConcept;
     editorCell.addEditorCell(createCollection_1());
     editorCell.addEditorCell(createCollection_2());
     editorCell.addEditorCell(createCollection_3());
+    editorCell.addEditorCell(createConstant_1());
     return editorCell;
   }
   private EditorCell createCollection_1() {
@@ -248,6 +249,12 @@ import org.jetbrains.mps.openapi.language.SConcept;
     protected String getNoTargetText() {
       return "<no transition>";
     }
+  }
+  private EditorCell createConstant_1() {
+    EditorCell_Constant editorCell = new EditorCell_Constant(getEditorContext(), myNode, "}");
+    editorCell.setCellId("Constant_sjqidp_d0");
+    editorCell.setDefaultText("");
+    return editorCell;
   }
 
   private static final class PROPS {

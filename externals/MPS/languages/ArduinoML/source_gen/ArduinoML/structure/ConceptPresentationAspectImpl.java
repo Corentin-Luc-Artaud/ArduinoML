@@ -13,6 +13,7 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
   private ConceptPresentation props_Actuator;
   private ConceptPresentation props_App;
   private ConceptPresentation props_Brick;
+  private ConceptPresentation props_Condition;
   private ConceptPresentation props_Sensor;
   private ConceptPresentation props_State;
   private ConceptPresentation props_Transition;
@@ -49,6 +50,13 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_Brick = cpb.create();
         }
         return props_Brick;
+      case LanguageConceptSwitch.Condition:
+        if (props_Condition == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.presentationByReference(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x68e402f143055962L, 0x68e402f143055965L, "sensor", "", "");
+          props_Condition = cpb.create();
+        }
+        return props_Condition;
       case LanguageConceptSwitch.Sensor:
         if (props_Sensor == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
@@ -66,7 +74,7 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
       case LanguageConceptSwitch.Transition:
         if (props_Transition == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
-          cpb.rawPresentation("Transition");
+          cpb.presentationByReference(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d8527da4aL, 0x671ab00d8527da95L, "target", "", "");
           props_Transition = cpb.create();
         }
         return props_Transition;
