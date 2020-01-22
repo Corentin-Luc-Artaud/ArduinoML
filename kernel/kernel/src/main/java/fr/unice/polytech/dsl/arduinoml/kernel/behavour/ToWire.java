@@ -19,7 +19,7 @@ public class ToWire implements Visitor {
     @Override
     public void visite(App a) {
         out.println("//custom arduino ml");
-        out.println("void setup {");
+        out.println("void setup (){");
         a.getBlocs().forEach(b -> b.acceptVisitor(this));
         out.println("}");
         out.println("\n// Behavioral concepts");
@@ -47,9 +47,7 @@ public class ToWire implements Visitor {
         s.getOutcomings().forEach(t -> t.acceptVisitor(this));
         out.println("\telse { state_"+s.getName()+"(); }");
 
-        s.getOutcomings().forEach(t -> t.acceptVisitor(this));
-
-        out.println("\n");
+        out.println("}\n");
     }
 
     @Override
@@ -67,7 +65,7 @@ public class ToWire implements Visitor {
     public void visite(Transition t) {
         out.print("\tif (");
         t.getConditions().forEach(c -> c.acceptVisitor(this));
-        out.println(" guard) { time = millis(); state_"+t.getDestination().getName()+"; }");
+        out.println(" guard) { time = millis(); state_"+t.getDestination().getName()+"(); }");
     }
 
 }

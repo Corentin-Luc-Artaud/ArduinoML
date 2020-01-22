@@ -28,12 +28,12 @@ public class AppTest
         app.createActuator("led1", 12);
 
         app.createState("off").addAction(new Action(app.getActuator("led1"), Status.LOW));
-        app.createState("on").addAction(new Action(app.getActuator("led1"), Status.HIGHT));
+        app.createState("on").addAction(new Action(app.getActuator("led1"), Status.HIGH));
 
         app.getState("off").addOutcomming(new Transition(app.getState("on"))
-        .addCondition(new Condition(app.getSensor("but1"), Status.HIGHT)));
+        .addCondition(new Condition(app.getSensor("but1"), Status.HIGH)));
         app.getState("on").addOutcomming(new Transition(app.getState("off"))
-        .addCondition(new Condition(app.getSensor("but1"), Status.HIGHT)));
+        .addCondition(new Condition(app.getSensor("but1"), Status.HIGH)));
 
 
         app.setInitialState(app.getState("off"));
