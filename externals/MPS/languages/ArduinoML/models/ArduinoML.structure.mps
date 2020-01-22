@@ -124,11 +124,17 @@
       <property role="20lbJX" value="fLJekj6/_1__n" />
       <ref role="20lvS9" node="6sqG0Q59XD9" resolve="Action" />
     </node>
+    <node concept="1TJgyj" id="6z$0J532$h0" role="1TKVEi">
+      <property role="IQ2ns" value="7558169309869655104" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="throwing" />
+      <ref role="20lvS9" node="6z$0J532$dc" resolve="Throwing" />
+    </node>
     <node concept="1TJgyj" id="6sqG0Q5adsc" role="1TKVEi">
       <property role="IQ2ns" value="7429444107416164108" />
       <property role="20lmBu" value="fLJjDmT/aggregation" />
       <property role="20kJfa" value="transition" />
-      <property role="20lbJX" value="fLJekj4/_1" />
+      <property role="20lbJX" value="fLJekj5/_0__n" />
       <ref role="20lvS9" node="6sqG0Q59XDa" resolve="Transition" />
     </node>
   </node>
@@ -194,6 +200,29 @@
       <property role="IQ2nx" value="7558169309869410391" />
       <property role="TrG5h" value="status" />
       <ref role="AX2Wp" node="6sqG0Q59XE9" resolve="STATUS" />
+    </node>
+  </node>
+  <node concept="1TIwiD" id="6z$0J532$dc">
+    <property role="EcuMT" value="7558169309869654860" />
+    <property role="TrG5h" value="Throwing" />
+    <ref role="1TJDcQ" to="tpck:gw2VY9q" resolve="BaseConcept" />
+    <node concept="1TJgyj" id="6z$0J532$eP" role="1TKVEi">
+      <property role="IQ2ns" value="7558169309869654965" />
+      <property role="20lmBu" value="fLJjDmT/aggregation" />
+      <property role="20kJfa" value="condition" />
+      <property role="20lbJX" value="fLJekj6/_1__n" />
+      <ref role="20lvS9" node="6z$0J531l_y" resolve="Condition" />
+    </node>
+    <node concept="1TJgyj" id="6z$0J532$gl" role="1TKVEi">
+      <property role="IQ2ns" value="7558169309869655061" />
+      <property role="20kJfa" value="led" />
+      <property role="20lbJX" value="fLJekj4/_1" />
+      <ref role="20lvS9" node="6sqG0Q59gQ1" resolve="Actuator" />
+    </node>
+    <node concept="1TJgyi" id="6z$0J532Xh9" role="1TKVEl">
+      <property role="IQ2nx" value="7558169309869757513" />
+      <property role="TrG5h" value="codeError" />
+      <ref role="AX2Wp" to="tpck:fKAQMTA" resolve="integer" />
     </node>
   </node>
 </model>

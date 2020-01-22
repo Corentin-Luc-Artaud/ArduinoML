@@ -23,6 +23,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
   /*package*/ final ConceptDescriptor myConceptCondition = createDescriptorForCondition();
   /*package*/ final ConceptDescriptor myConceptSensor = createDescriptorForSensor();
   /*package*/ final ConceptDescriptor myConceptState = createDescriptorForState();
+  /*package*/ final ConceptDescriptor myConceptThrowing = createDescriptorForThrowing();
   /*package*/ final ConceptDescriptor myConceptTransition = createDescriptorForTransition();
   /*package*/ final EnumerationDescriptor myEnumerationSTATUS = new EnumerationDescriptor_STATUS();
   private final LanguageConceptSwitch myIndexSwitch;
@@ -39,7 +40,7 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
 
   @Override
   public Collection<ConceptDescriptor> getDescriptors() {
-    return Arrays.asList(myConceptAction, myConceptActuator, myConceptApp, myConceptBrick, myConceptCondition, myConceptSensor, myConceptState, myConceptTransition);
+    return Arrays.asList(myConceptAction, myConceptActuator, myConceptApp, myConceptBrick, myConceptCondition, myConceptSensor, myConceptState, myConceptThrowing, myConceptTransition);
   }
 
   @Override
@@ -60,6 +61,8 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
         return myConceptSensor;
       case LanguageConceptSwitch.State:
         return myConceptState;
+      case LanguageConceptSwitch.Throwing:
+        return myConceptThrowing;
       case LanguageConceptSwitch.Transition:
         return myConceptTransition;
       default:
@@ -138,7 +141,18 @@ public class StructureAspectDescriptor extends BaseStructureAspectDescriptor {
     b.origin("r:ca92aa82-bfce-4b0d-80de-e13164636220(ArduinoML.structure)/7429444107416099396");
     b.version(2);
     b.aggregate("actions", 0x671ab00d8527da47L).target(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d8527da49L).optional(false).ordered(true).multiple(true).origin("7429444107416099399").done();
-    b.aggregate("transition", 0x671ab00d8528d70cL).target(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d8527da4aL).optional(false).ordered(true).multiple(false).origin("7429444107416164108").done();
+    b.aggregate("throwing", 0x68e402f1430a4440L).target(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x68e402f1430a434cL).optional(true).ordered(true).multiple(false).origin("7558169309869655104").done();
+    b.aggregate("transition", 0x671ab00d8528d70cL).target(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d8527da4aL).optional(true).ordered(true).multiple(true).origin("7429444107416164108").done();
+    return b.create();
+  }
+  private static ConceptDescriptor createDescriptorForThrowing() {
+    ConceptDescriptorBuilder2 b = new ConceptDescriptorBuilder2("ArduinoML", "Throwing", 0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x68e402f1430a434cL);
+    b.class_(false, false, false);
+    b.origin("r:ca92aa82-bfce-4b0d-80de-e13164636220(ArduinoML.structure)/7558169309869654860");
+    b.version(2);
+    b.property("codeError", 0x68e402f1430bd449L).type(PrimitiveTypeId.INTEGER).origin("7558169309869757513").done();
+    b.associate("led", 0x68e402f1430a4415L).target(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d85250d81L).optional(false).origin("7558169309869655061").done();
+    b.aggregate("condition", 0x68e402f1430a43b5L).target(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x68e402f143055962L).optional(false).ordered(true).multiple(true).origin("7558169309869654965").done();
     return b.create();
   }
   private static ConceptDescriptor createDescriptorForTransition() {

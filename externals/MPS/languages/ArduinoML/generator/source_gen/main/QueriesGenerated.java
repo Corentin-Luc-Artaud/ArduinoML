@@ -8,22 +8,20 @@ import jetbrains.mps.generator.template.PropertyMacroContext;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
 import org.jetbrains.mps.openapi.model.SNode;
-import jetbrains.mps.generator.template.SourceSubstituteMacroNodeContext;
 import jetbrains.mps.generator.template.SourceSubstituteMacroNodesContext;
 import java.util.Map;
-import jetbrains.mps.generator.impl.query.SourceNodeQuery;
+import jetbrains.mps.generator.impl.query.SourceNodesQuery;
 import java.util.HashMap;
 import org.jetbrains.annotations.NotNull;
 import jetbrains.mps.generator.impl.query.QueryKey;
 import jetbrains.mps.generator.impl.query.QueryKeyImpl;
-import org.jetbrains.annotations.Nullable;
-import jetbrains.mps.generator.impl.GenerationFailureException;
-import jetbrains.mps.generator.impl.query.SourceNodesQuery;
 import java.util.Collection;
+import jetbrains.mps.generator.impl.GenerationFailureException;
 import jetbrains.mps.util.IterableUtil;
 import jetbrains.mps.generator.impl.query.PropertyValueQuery;
 import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
 import org.jetbrains.mps.openapi.language.SProperty;
+import org.jetbrains.annotations.Nullable;
 import org.jetbrains.mps.openapi.language.SReferenceLink;
 import org.jetbrains.mps.openapi.language.SContainmentLink;
 
@@ -62,10 +60,6 @@ public class QueriesGenerated extends QueryProviderBase {
   public static Object propertyMacro_GetValue_7_1(final PropertyMacroContext _context) {
     return (SPropertyOperations.getBoolean(_context.getNode(), PROPS.status$c$CK) ? "HIGH" : "LOW");
   }
-  public static SNode sourceNodeQuery_6_0(final SourceSubstituteMacroNodeContext _context) {
-    _context.putSessionObject("current_state_name", SPropertyOperations.getString(_context.getNode(), PROPS.name$tAp1));
-    return SLinkOperations.getTarget(_context.getNode(), LINKS.transition$DBHR);
-  }
   public static Iterable<SNode> sourceNodesQuery_1_0(final SourceSubstituteMacroNodesContext _context) {
     return SLinkOperations.getChildren(_context.getNode(), LINKS.bricks$wTAv);
   }
@@ -78,34 +72,7 @@ public class QueriesGenerated extends QueryProviderBase {
   public static Iterable<SNode> sourceNodesQuery_6_0(final SourceSubstituteMacroNodesContext _context) {
     return SLinkOperations.getChildren(_context.getNode(), LINKS.actions$9$CY);
   }
-  private final Map<String, SourceNodeQuery> snqMethods = new HashMap<String, SourceNodeQuery>();
-  {
-    int i = 0;
-    snqMethods.put("7429444107416389855", new SNQ(i++));
-  }
-  @NotNull
-  @Override
-  public SourceNodeQuery getSourceNodeQuery(@NotNull QueryKey identity) {
-    final String id = ((QueryKeyImpl) identity).getQueryNodeId().toString();
-    if (!(snqMethods.containsKey(id))) {
-      return super.getSourceNodeQuery(identity);
-    }
-    return snqMethods.get(id);
-  }
-  private static class SNQ implements SourceNodeQuery {
-    private final int methodKey;
-    public SNQ(int methodKey) {
-      this.methodKey = methodKey;
-    }
-    @Nullable
-    public SNode evaluate(@NotNull SourceSubstituteMacroNodeContext ctx) throws GenerationFailureException {
-      switch (methodKey) {
-        case 0:
-          return QueriesGenerated.sourceNodeQuery_6_0(ctx);
-        default:
-          throw new GenerationFailureException(String.format("Inconsistent QueriesGenerated: there's no method for query %s (key: #%d)", ctx.getTemplateReference(), methodKey));
-      }
-    }
+  public static Iterable<SNode> sourceNodesQuery_6_1(final SourceSubstituteMacroNodesContext _context) {
   }
   private final Map<String, SourceNodesQuery> snsqMethods = new HashMap<String, SourceNodesQuery>();
   {
@@ -114,6 +81,7 @@ public class QueriesGenerated extends QueryProviderBase {
     snsqMethods.put("7429444107416429093", new SNsQ(i++));
     snsqMethods.put("7558169309869508220", new SNsQ(i++));
     snsqMethods.put("7429444107416388807", new SNsQ(i++));
+    snsqMethods.put("7558169309869652981", new SNsQ(i++));
   }
   @NotNull
   @Override
@@ -140,6 +108,8 @@ public class QueriesGenerated extends QueryProviderBase {
           return IterableUtil.asCollection(QueriesGenerated.sourceNodesQuery_5_0(ctx));
         case 3:
           return IterableUtil.asCollection(QueriesGenerated.sourceNodesQuery_6_0(ctx));
+        case 4:
+          return IterableUtil.asCollection(QueriesGenerated.sourceNodesQuery_6_1(ctx));
         default:
           throw new GenerationFailureException(String.format("Inconsistent QueriesGenerated: there's no method for query %s (key: #%d)", ctx.getTemplateReference(), methodKey));
       }
@@ -208,7 +178,6 @@ public class QueriesGenerated extends QueryProviderBase {
     /*package*/ static final SReferenceLink actuator$9FMC = MetaAdapterFactory.getReferenceLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d8527da49L, 0x671ab00d8527da9aL, "actuator");
     /*package*/ static final SReferenceLink target$9FA3 = MetaAdapterFactory.getReferenceLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d8527da4aL, 0x671ab00d8527da95L, "target");
     /*package*/ static final SReferenceLink sensor$P1WY = MetaAdapterFactory.getReferenceLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x68e402f143055962L, 0x68e402f143055965L, "sensor");
-    /*package*/ static final SContainmentLink transition$DBHR = MetaAdapterFactory.getContainmentLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d8527da44L, 0x671ab00d8528d70cL, "transition");
     /*package*/ static final SContainmentLink bricks$wTAv = MetaAdapterFactory.getContainmentLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d85250d89L, 0x671ab00d85250d96L, "bricks");
     /*package*/ static final SContainmentLink state$avWM = MetaAdapterFactory.getContainmentLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d85250d89L, 0x671ab00d8527dabeL, "state");
     /*package*/ static final SContainmentLink condition$_4L3 = MetaAdapterFactory.getContainmentLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d8527da4aL, 0x68e402f1430687a7L, "condition");

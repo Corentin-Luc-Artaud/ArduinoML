@@ -16,6 +16,7 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
   private ConceptPresentation props_Condition;
   private ConceptPresentation props_Sensor;
   private ConceptPresentation props_State;
+  private ConceptPresentation props_Throwing;
   private ConceptPresentation props_Transition;
 
   @Override
@@ -71,6 +72,13 @@ public class ConceptPresentationAspectImpl extends ConceptPresentationAspectBase
           props_State = cpb.create();
         }
         return props_State;
+      case LanguageConceptSwitch.Throwing:
+        if (props_Throwing == null) {
+          ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
+          cpb.presentationByReference(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x68e402f1430a434cL, 0x68e402f1430a4415L, "led", "", "");
+          props_Throwing = cpb.create();
+        }
+        return props_Throwing;
       case LanguageConceptSwitch.Transition:
         if (props_Transition == null) {
           ConceptPresentationBuilder cpb = new ConceptPresentationBuilder();
