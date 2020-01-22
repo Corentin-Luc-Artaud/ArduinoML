@@ -85,34 +85,18 @@
       <concept id="1114729360583" name="jetbrains.mps.lang.generator.structure.CopySrcListMacro" flags="ln" index="2b32R4">
         <child id="1168278589236" name="sourceNodesQuery" index="2P8S$" />
       </concept>
-      <concept id="1095416546421" name="jetbrains.mps.lang.generator.structure.MappingConfiguration" flags="ig" index="bUwia">
-        <child id="1167328349397" name="reductionMappingRule" index="3acgRq" />
-        <child id="1167514678247" name="rootMappingRule" index="3lj3bC" />
-      </concept>
-      <concept id="1168559333462" name="jetbrains.mps.lang.generator.structure.TemplateDeclarationReference" flags="ln" index="j$656" />
+      <concept id="1095416546421" name="jetbrains.mps.lang.generator.structure.MappingConfiguration" flags="ig" index="bUwia" />
       <concept id="1168619357332" name="jetbrains.mps.lang.generator.structure.RootTemplateAnnotation" flags="lg" index="n94m4">
         <reference id="1168619429071" name="applicableConcept" index="n9lRv" />
       </concept>
       <concept id="1095672379244" name="jetbrains.mps.lang.generator.structure.TemplateFragment" flags="ng" index="raruj" />
-      <concept id="1722980698497626400" name="jetbrains.mps.lang.generator.structure.ITemplateCall" flags="ng" index="v9R3L">
-        <reference id="1722980698497626483" name="template" index="v9R2y" />
-      </concept>
       <concept id="1167169188348" name="jetbrains.mps.lang.generator.structure.TemplateFunctionParameter_sourceNode" flags="nn" index="30H73N" />
-      <concept id="1167169308231" name="jetbrains.mps.lang.generator.structure.BaseMappingRule" flags="ng" index="30H$t8">
-        <reference id="1167169349424" name="applicableConcept" index="30HIoZ" />
-      </concept>
       <concept id="1092059087312" name="jetbrains.mps.lang.generator.structure.TemplateDeclaration" flags="ig" index="13MO4I">
         <reference id="1168285871518" name="applicableConcept" index="3gUMe" />
         <child id="1092060348987" name="contentNode" index="13RCb5" />
       </concept>
       <concept id="1087833241328" name="jetbrains.mps.lang.generator.structure.PropertyMacro" flags="ln" index="17Uvod">
         <child id="1167756362303" name="propertyValueFunction" index="3zH0cK" />
-      </concept>
-      <concept id="1167327847730" name="jetbrains.mps.lang.generator.structure.Reduction_MappingRule" flags="lg" index="3aamgX">
-        <child id="1169672767469" name="ruleConsequence" index="1lVwrX" />
-      </concept>
-      <concept id="1167514355419" name="jetbrains.mps.lang.generator.structure.Root_MappingRule" flags="lg" index="3lhOvk">
-        <reference id="1167514355421" name="template" index="3lhOvi" />
       </concept>
       <concept id="1167756080639" name="jetbrains.mps.lang.generator.structure.PropertyMacro_GetPropertyValue" flags="in" index="3zFVjK" />
       <concept id="1167951910403" name="jetbrains.mps.lang.generator.structure.SourceSubstituteMacro_SourceNodesQuery" flags="in" index="3JmXsc" />
@@ -153,46 +137,6 @@
   </registry>
   <node concept="bUwia" id="6sqG0Q59gPu">
     <property role="TrG5h" value="main" />
-    <node concept="3aamgX" id="6sqG0Q59EO1" role="3acgRq">
-      <ref role="30HIoZ" to="1nry:6sqG0Q59gQ8" resolve="Sensor" />
-      <node concept="j$656" id="6sqG0Q59EOf" role="1lVwrX">
-        <ref role="v9R2y" node="6sqG0Q59EOd" resolve="reduce_Sensor" />
-      </node>
-    </node>
-    <node concept="3aamgX" id="6sqG0Q59Sbq" role="3acgRq">
-      <ref role="30HIoZ" to="1nry:6sqG0Q59gQ1" resolve="Actuator" />
-      <node concept="j$656" id="6sqG0Q59Sby" role="1lVwrX">
-        <ref role="v9R2y" node="6sqG0Q59Sbw" resolve="reduce_Actuator" />
-      </node>
-    </node>
-    <node concept="3aamgX" id="6sqG0Q5aFn_" role="3acgRq">
-      <ref role="30HIoZ" to="1nry:6sqG0Q59XD9" resolve="Action" />
-      <node concept="j$656" id="6sqG0Q5aFnZ" role="1lVwrX">
-        <ref role="v9R2y" node="6sqG0Q5aFnX" resolve="reduce_Action" />
-      </node>
-    </node>
-    <node concept="3aamgX" id="6sqG0Q5aKp7" role="3acgRq">
-      <ref role="30HIoZ" to="1nry:6sqG0Q59XDa" resolve="Transition" />
-      <node concept="j$656" id="6sqG0Q5aKpj" role="1lVwrX">
-        <ref role="v9R2y" node="6sqG0Q5aKph" resolve="reduce_Transition" />
-      </node>
-    </node>
-    <node concept="3aamgX" id="6sqG0Q5aYiH" role="3acgRq">
-      <ref role="30HIoZ" to="1nry:6sqG0Q59XD4" resolve="State" />
-      <node concept="j$656" id="6sqG0Q5aYiV" role="1lVwrX">
-        <ref role="v9R2y" node="6sqG0Q5aYiT" resolve="reduce_State" />
-      </node>
-    </node>
-    <node concept="3aamgX" id="6z$0J531Xzx" role="3acgRq">
-      <ref role="30HIoZ" to="1nry:6z$0J531l_y" resolve="Condition" />
-      <node concept="j$656" id="6z$0J531XzL" role="1lVwrX">
-        <ref role="v9R2y" node="6z$0J531XzJ" resolve="reduce_Condition" />
-      </node>
-    </node>
-    <node concept="3lhOvk" id="6sqG0Q59B7A" role="3lj3bC">
-      <ref role="30HIoZ" to="1nry:6sqG0Q59gQ9" resolve="App" />
-      <ref role="3lhOvi" node="6sqG0Q59B7C" resolve="map_App" />
-    </node>
   </node>
   <node concept="312cEu" id="6sqG0Q59B7C">
     <property role="TrG5h" value="map_App" />
