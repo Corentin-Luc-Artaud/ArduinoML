@@ -268,11 +268,11 @@
     <ref role="3yfmFc" node="6z$0J532jR8" resolve="iddle" />
     <node concept="3yfVQc" id="6z$0J532$c7" role="3yfVQr">
       <property role="TrG5h" value="error_led" />
-      <property role="3yfVPM" value="12" />
+      <property role="3yfVPM" value="8" />
     </node>
     <node concept="3yfVQc" id="7SND3L2613H" role="3yfVQr">
       <property role="TrG5h" value="green_led" />
-      <property role="3yfVPM" value="8" />
+      <property role="3yfVPM" value="12" />
     </node>
     <node concept="3yfVQ5" id="6z$0J532$cd" role="3yfVQr">
       <property role="TrG5h" value="button1" />
