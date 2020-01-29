@@ -111,9 +111,9 @@
         <property role="3yfmEl" value="6sqG0Q59XEa/false" />
         <ref role="3yfmEn" node="6z$0J532jPV" resolve="led" />
       </node>
-      <node concept="3yfmD7" id="6z$0J532jP0" role="3ycAs1">
+      <node concept="3yfmD7" id="3ltJClzEC2b" role="3ycAs1">
         <ref role="3yfmEo" node="6z$0J532jQB" resolve="led_on" />
-        <node concept="FSlIj" id="6z$0J532jQ$" role="FSClm">
+        <node concept="FSlIj" id="3ltJClzEC2f" role="FSClm">
           <property role="FSCEA" value="6sqG0Q59XEb/true" />
           <ref role="FSlIk" node="6sqG0Q59B6V" resolve="button" />
         </node>
