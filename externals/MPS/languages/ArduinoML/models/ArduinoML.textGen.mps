@@ -125,6 +125,18 @@
         <node concept="lc7rE" id="3ltJClzEO5w" role="3cqZAp">
           <node concept="l8MVK" id="3ltJClzEO9o" role="lcghm" />
         </node>
+        <node concept="lc7rE" id="7SND3L2aV6z" role="3cqZAp">
+          <node concept="la8eA" id="7SND3L2aV9D" role="lcghm">
+            <property role="lacIc" value="&quot;#include &lt;LiquidCrystal.h&gt;&quot;" />
+          </node>
+          <node concept="l8MVK" id="7SND3L2aVa_" role="lcghm" />
+        </node>
+        <node concept="lc7rE" id="7SND3L2aVoe" role="3cqZAp">
+          <node concept="la8eA" id="7SND3L2aVBk" role="lcghm">
+            <property role="lacIc" value="&quot;LiquidCrystal lcd(2, 3, 4, 5, 6, 7, 8);&quot;" />
+          </node>
+          <node concept="l8MVK" id="7SND3L2aVCr" role="lcghm" />
+        </node>
         <node concept="lc7rE" id="3ltJClzEOhH" role="3cqZAp">
           <node concept="la8eA" id="3ltJClzEOlB" role="lcghm">
             <property role="lacIc" value="// Declaring sensors and actuators " />
@@ -151,6 +163,13 @@
                   </node>
                 </node>
               </node>
+            </node>
+            <node concept="1bpajm" id="7SND3L2aVKv" role="3cqZAp" />
+            <node concept="lc7rE" id="7SND3L2aVLw" role="3cqZAp">
+              <node concept="la8eA" id="7SND3L2aVM6" role="lcghm">
+                <property role="lacIc" value="&quot;lcd.begin(16, 2);&quot;" />
+              </node>
+              <node concept="l8MVK" id="7SND3L2aVNG" role="lcghm" />
             </node>
           </node>
         </node>

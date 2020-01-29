@@ -29,7 +29,7 @@ digitalWrite(12, LOW);
 digitalRead(9) == HIGH && digitalRead(10) == HIGH && 
 guard) {
     time = millis();
-    throwing(3, 12);}  if (
+    throwing(3, 8);}  if (
 digitalRead(9) == HIGH && digitalRead(10) == LOW && 
 guard) {
     time = millis();
