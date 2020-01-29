@@ -8,6 +8,7 @@ import jetbrains.mps.text.impl.TextGenSupport;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations;
 import org.jetbrains.mps.openapi.model.SNode;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
+import jetbrains.mps.internal.collections.runtime.Sequence;
 import org.jetbrains.mps.openapi.language.SProperty;
 import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
 import org.jetbrains.mps.openapi.language.SContainmentLink;
@@ -22,26 +23,58 @@ public class State_TextGen extends TextGenDescriptorBase {
     tgs.newLine();
     ctx.getBuffer().area().increaseIndent();
     tgs.indent();
-    for (SNode item : SLinkOperations.getChildren(ctx.getPrimaryInput(), LINKS.actions$9$CY)) {
-      tgs.appendNode(item);
+    {
+      Iterable<SNode> collection = SLinkOperations.getChildren(ctx.getPrimaryInput(), LINKS.actions$9$CY);
+      final SNode lastItem = Sequence.fromIterable(collection).last();
+      for (SNode item : collection) {
+        tgs.appendNode(item);
+        if (item != lastItem) {
+          tgs.append("\n");
+        }
+      }
     }
     tgs.newLine();
     tgs.indent();
     tgs.append("boolean guard = millis() - time > debounce;");
     tgs.newLine();
     tgs.indent();
-    tgs.appendNode(SLinkOperations.getTarget(ctx.getPrimaryInput(), LINKS.transition$DBHR));
+    {
+      Iterable<SNode> collection = SLinkOperations.getChildren(ctx.getPrimaryInput(), LINKS.throwing$uxZx);
+      final SNode lastItem = Sequence.fromIterable(collection).last();
+      for (SNode item : collection) {
+        tgs.appendNode(item);
+        if (item != lastItem) {
+          tgs.append("\n");
+        }
+      }
+    }
+    tgs.indent();
+    {
+      Iterable<SNode> collection = SLinkOperations.getChildren(ctx.getPrimaryInput(), LINKS.transition$DBHR);
+      final SNode lastItem = Sequence.fromIterable(collection).last();
+      for (SNode item : collection) {
+        tgs.appendNode(item);
+        if (item != lastItem) {
+          tgs.append("\n");
+        }
+      }
+    }
+    tgs.indent();
+    tgs.append("else {");
     tgs.newLine();
+    ctx.getBuffer().area().increaseIndent();
     tgs.indent();
     tgs.append("state_");
     tgs.append(SPropertyOperations.getString(ctx.getPrimaryInput(), PROPS.name$tAp1));
     tgs.append("();");
     tgs.newLine();
+    ctx.getBuffer().area().decreaseIndent();
     tgs.indent();
     tgs.append("}");
     tgs.newLine();
     ctx.getBuffer().area().decreaseIndent();
     tgs.append("}");
+    tgs.newLine();
     tgs.newLine();
   }
 
@@ -51,6 +84,7 @@ public class State_TextGen extends TextGenDescriptorBase {
 
   private static final class LINKS {
     /*package*/ static final SContainmentLink actions$9$CY = MetaAdapterFactory.getContainmentLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d8527da44L, 0x671ab00d8527da47L, "actions");
+    /*package*/ static final SContainmentLink throwing$uxZx = MetaAdapterFactory.getContainmentLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d8527da44L, 0x68e402f1430a4440L, "throwing");
     /*package*/ static final SContainmentLink transition$DBHR = MetaAdapterFactory.getContainmentLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d8527da44L, 0x671ab00d8528d70cL, "transition");
   }
 }

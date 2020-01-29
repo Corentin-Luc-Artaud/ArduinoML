@@ -41,7 +41,6 @@
       <concept id="1219418625346" name="jetbrains.mps.lang.editor.structure.IStyleContainer" flags="ng" index="3F0Thp">
         <child id="1219418656006" name="styleItem" index="3F10Kt" />
       </concept>
-      <concept id="1073389882823" name="jetbrains.mps.lang.editor.structure.CellModel_RefNode" flags="sg" stub="730538219795960754" index="3F1sOY" />
       <concept id="1073390211982" name="jetbrains.mps.lang.editor.structure.CellModel_RefNodeList" flags="sg" stub="2794558372793454595" index="3F2HdR" />
       <concept id="1198256887712" name="jetbrains.mps.lang.editor.structure.CellModel_Indent" flags="ng" index="3XFhqQ" />
       <concept id="1166049232041" name="jetbrains.mps.lang.editor.structure.AbstractComponent" flags="ng" index="1XWOmA">
@@ -161,13 +160,15 @@
         </node>
         <node concept="l2Vlx" id="6z$0J532jTS" role="2iSdaV" />
       </node>
-      <node concept="3EZMnI" id="6z$0J532GyQ" role="3EZMnx">
-        <node concept="VPM3Z" id="6z$0J532GyS" role="3F10Kt" />
-        <node concept="3XFhqQ" id="6z$0J5335O7" role="3EZMnx" />
-        <node concept="3F1sOY" id="6z$0J532Gzj" role="3EZMnx">
+      <node concept="3EZMnI" id="7SND3L25uID" role="3EZMnx">
+        <node concept="VPM3Z" id="7SND3L25uIF" role="3F10Kt" />
+        <node concept="3XFhqQ" id="7SND3L25uJ6" role="3EZMnx" />
+        <node concept="3F2HdR" id="7SND3L25uJk" role="3EZMnx">
           <ref role="1NtTu8" to="1nry:6z$0J532$h0" resolve="throwing" />
+          <node concept="2iRkQZ" id="7SND3L25uJn" role="2czzBx" />
+          <node concept="VPM3Z" id="7SND3L25uJo" role="3F10Kt" />
         </node>
-        <node concept="l2Vlx" id="6z$0J532GyV" role="2iSdaV" />
+        <node concept="l2Vlx" id="7SND3L25uII" role="2iSdaV" />
       </node>
       <node concept="3F0ifn" id="6z$0J531Cys" role="3EZMnx">
         <property role="3F0ifm" value="}" />

@@ -17,7 +17,7 @@
         <reference id="7558169309869332837" name="sensor" index="FSlIk" />
       </concept>
       <concept id="7558169309869654860" name="ArduinoML.structure.Throwing" flags="ng" index="FV$6X">
-        <property id="7558169309869757513" name="code" index="FVXqS" />
+        <property id="7558169309869757513" name="codeError" index="FVXqS" />
         <reference id="7558169309869655061" name="led" index="FV$r$" />
         <child id="7558169309869654965" name="condition" index="FV$54" />
       </concept>
@@ -181,7 +181,7 @@
     </node>
     <node concept="3yfVQ5" id="6z$0J532jRi" role="3yfVQr">
       <property role="TrG5h" value="but2" />
-      <property role="3yfVPM" value="11" />
+      <property role="3yfVPM" value="10" />
     </node>
     <node concept="3yfmD9" id="6z$0J532jR8" role="3yfmEN">
       <property role="TrG5h" value="iddle" />
@@ -270,6 +270,10 @@
       <property role="TrG5h" value="red_led" />
       <property role="3yfVPM" value="12" />
     </node>
+    <node concept="3yfVQc" id="7SND3L2613H" role="3yfVQr">
+      <property role="TrG5h" value="green_led" />
+      <property role="3yfVPM" value="8" />
+    </node>
     <node concept="3yfVQ5" id="6z$0J532$cd" role="3yfVQr">
       <property role="TrG5h" value="but1" />
       <property role="3yfVPM" value="9" />
@@ -284,10 +288,29 @@
         <property role="3yfmEl" value="6sqG0Q59XEa/false" />
         <ref role="3yfmEn" node="6z$0J532$c7" resolve="red_led" />
       </node>
+      <node concept="3yfmD4" id="7SND3L261ab" role="3yfmDa">
+        <property role="3yfmEl" value="6sqG0Q59XEa/false" />
+        <ref role="3yfmEn" node="7SND3L2613H" resolve="green_led" />
+      </node>
       <node concept="3yfmD7" id="6z$0J532G$v" role="3ycAs1">
-        <ref role="3yfmEo" node="6z$0J532$c3" resolve="iddle" />
+        <ref role="3yfmEo" node="6z$0J532jQB" resolve="led_on" />
         <node concept="FSlIj" id="6z$0J532G$z" role="FSClm">
           <property role="FSCEA" value="6sqG0Q59XEb/true" />
+          <ref role="FSlIk" node="6z$0J532jRc" resolve="but1" />
+        </node>
+        <node concept="FSlIj" id="7SND3L2615e" role="FSClm">
+          <property role="FSCEA" value="6sqG0Q59XEa/false" />
+          <ref role="FSlIk" node="6z$0J532jRi" resolve="but2" />
+        </node>
+      </node>
+      <node concept="3yfmD7" id="7SND3L24A0L" role="3ycAs1">
+        <ref role="3yfmEo" node="6z$0J532jQB" resolve="led_on" />
+        <node concept="FSlIj" id="7SND3L24A0R" role="FSClm">
+          <property role="FSCEA" value="6sqG0Q59XEb/true" />
+          <ref role="FSlIk" node="6z$0J532jRi" resolve="but2" />
+        </node>
+        <node concept="FSlIj" id="7SND3L2615i" role="FSClm">
+          <property role="FSCEA" value="6sqG0Q59XEa/false" />
           <ref role="FSlIk" node="6z$0J532jRc" resolve="but1" />
         </node>
       </node>
@@ -302,6 +325,51 @@
           <property role="FSCEA" value="6sqG0Q59XEb/true" />
           <ref role="FSlIk" node="6z$0J532jRi" resolve="but2" />
         </node>
+      </node>
+    </node>
+    <node concept="3yfmD9" id="7SND3L2613n" role="3yfmEN">
+      <property role="TrG5h" value="led_on" />
+      <node concept="3yfmD4" id="7SND3L261ai" role="3yfmDa">
+        <property role="3yfmEl" value="6sqG0Q59XEa/false" />
+        <ref role="3yfmEn" node="6sqG0Q59rEx" resolve="red_led" />
+      </node>
+      <node concept="FV$6X" id="7SND3L2614M" role="FV$qL">
+        <property role="FVXqS" value="3" />
+        <ref role="FV$r$" node="6sqG0Q59rEx" resolve="red_led" />
+        <node concept="FSlIj" id="7SND3L2614T" role="FV$54">
+          <property role="FSCEA" value="6sqG0Q59XEb/true" />
+          <ref role="FSlIk" node="6z$0J532jRc" resolve="but1" />
+        </node>
+        <node concept="FSlIj" id="7SND3L2614X" role="FV$54">
+          <property role="FSCEA" value="6sqG0Q59XEb/true" />
+          <ref role="FSlIk" node="6z$0J532jRi" resolve="but2" />
+        </node>
+      </node>
+      <node concept="3yfmD7" id="7SND3L2614h" role="3ycAs1">
+        <ref role="3yfmEo" node="6z$0J532jR8" resolve="iddle" />
+        <node concept="FSlIj" id="7SND3L2614o" role="FSClm">
+          <property role="FSCEA" value="6sqG0Q59XEb/true" />
+          <ref role="FSlIk" node="6z$0J532jRc" resolve="but1" />
+        </node>
+        <node concept="FSlIj" id="7SND3L2614s" role="FSClm">
+          <property role="FSCEA" value="6sqG0Q59XEa/false" />
+          <ref role="FSlIk" node="6z$0J532jRi" resolve="but2" />
+        </node>
+      </node>
+      <node concept="3yfmD7" id="7SND3L2614w" role="3ycAs1">
+        <ref role="3yfmEo" node="6z$0J532jR8" resolve="iddle" />
+        <node concept="FSlIj" id="7SND3L2614E" role="FSClm">
+          <property role="FSCEA" value="6sqG0Q59XEa/false" />
+          <ref role="FSlIk" node="6z$0J532jRc" resolve="but1" />
+        </node>
+        <node concept="FSlIj" id="7SND3L2614I" role="FSClm">
+          <property role="FSCEA" value="6sqG0Q59XEb/true" />
+          <ref role="FSlIk" node="6z$0J532jRi" resolve="but2" />
+        </node>
+      </node>
+      <node concept="3yfmD4" id="7SND3L2613N" role="3yfmDa">
+        <property role="3yfmEl" value="6sqG0Q59XEb/true" />
+        <ref role="3yfmEn" node="7SND3L2613H" resolve="green_led" />
       </node>
     </node>
   </node>
