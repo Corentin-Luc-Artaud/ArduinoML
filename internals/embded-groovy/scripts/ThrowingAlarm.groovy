@@ -13,7 +13,7 @@ from iddle to led1_on when but2 becomes high
 from led1_on to iddle when but1 becomes low
 from led1_on to iddle when but2 becomes low
 
-from led1_on error 3  when but1 becomes high and but2 becomes high
-from iddle error 3  when but1 becomes high and but1 becomes high
+error 3 from led1_on when but1 becomes high and but2 becomes high
+error 3 from iddle when but1 becomes high and but1 becomes high
 
 export "ThrowingAlarm!"
