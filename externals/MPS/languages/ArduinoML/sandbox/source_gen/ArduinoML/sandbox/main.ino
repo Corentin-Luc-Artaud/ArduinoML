@@ -1,10 +1,8 @@
-/** Generation code for the application ExceptionThrowing **/
+/** Generation code for the application StateBasedAlarm **/
 // Declaring sensors and actuators 
 void setup() {
   pinMode(12, OUTPUT);
-pinMode(8, OUTPUT);
-pinMode(9, INPUT);
-pinMode(10, INPUT);}
+pinMode(9, INPUT);}
 
 // Declaring throwing method
 void throwing(int errorCode, int ledPin) {
@@ -23,21 +21,9 @@ long time = 0; long debounce = 200;
 // Declaring states
 void state_iddle() {
   digitalWrite(12, LOW);
-digitalWrite(8, LOW);
   boolean guard = millis() - time > debounce;
-  if (
-digitalRead(12) == HIGH && digitalRead(10) == HIGH && 
-guard) {
-    time = millis();
-    throwing(3, 12);}  if (
-digitalRead(12) == HIGH && digitalRead(10) == LOW && 
-guard) {
-    time = millis();
-    state_led_on();
-}
-
-if (
-digitalRead(10) == HIGH && digitalRead(12) == LOW && 
+    if (
+digitalRead(9) == HIGH && 
 guard) {
     time = millis();
     state_led_on();
@@ -49,22 +35,10 @@ guard) {
 
 
 void state_led_on() {
-  digitalWrite(12, LOW);
-digitalWrite(8, HIGH);
+  digitalWrite(12, HIGH);
   boolean guard = millis() - time > debounce;
-  if (
-digitalRead(12) == HIGH && digitalRead(10) == HIGH && 
-guard) {
-    time = millis();
-    throwing(3, 12);}  if (
-digitalRead(12) == HIGH && digitalRead(10) == LOW && 
-guard) {
-    time = millis();
-    state_iddle();
-}
-
-if (
-digitalRead(12) == LOW && digitalRead(10) == HIGH && 
+    if (
+digitalRead(9) == LOW && 
 guard) {
     time = millis();
     state_iddle();
