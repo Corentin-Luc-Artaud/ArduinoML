@@ -69,19 +69,12 @@ public class QueriesGenerated extends QueryProviderBase {
   public static Iterable<SNode> sourceNodesQuery_5_0(final SourceSubstituteMacroNodesContext _context) {
     return SLinkOperations.getChildren(_context.getNode(), LINKS.condition$_4L3);
   }
-  public static Iterable<SNode> sourceNodesQuery_6_0(final SourceSubstituteMacroNodesContext _context) {
-    return SLinkOperations.getChildren(_context.getNode(), LINKS.actions$9$CY);
-  }
-  public static Iterable<SNode> sourceNodesQuery_6_1(final SourceSubstituteMacroNodesContext _context) {
-  }
   private final Map<String, SourceNodesQuery> snsqMethods = new HashMap<String, SourceNodesQuery>();
   {
     int i = 0;
     snsqMethods.put("7429444107416063260", new SNsQ(i++));
     snsqMethods.put("7429444107416429093", new SNsQ(i++));
     snsqMethods.put("7558169309869508220", new SNsQ(i++));
-    snsqMethods.put("7429444107416388807", new SNsQ(i++));
-    snsqMethods.put("7558169309869652981", new SNsQ(i++));
   }
   @NotNull
   @Override
@@ -106,10 +99,6 @@ public class QueriesGenerated extends QueryProviderBase {
           return IterableUtil.asCollection(QueriesGenerated.sourceNodesQuery_1_1(ctx));
         case 2:
           return IterableUtil.asCollection(QueriesGenerated.sourceNodesQuery_5_0(ctx));
-        case 3:
-          return IterableUtil.asCollection(QueriesGenerated.sourceNodesQuery_6_0(ctx));
-        case 4:
-          return IterableUtil.asCollection(QueriesGenerated.sourceNodesQuery_6_1(ctx));
         default:
           throw new GenerationFailureException(String.format("Inconsistent QueriesGenerated: there's no method for query %s (key: #%d)", ctx.getTemplateReference(), methodKey));
       }
@@ -181,7 +170,6 @@ public class QueriesGenerated extends QueryProviderBase {
     /*package*/ static final SContainmentLink bricks$wTAv = MetaAdapterFactory.getContainmentLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d85250d89L, 0x671ab00d85250d96L, "bricks");
     /*package*/ static final SContainmentLink state$avWM = MetaAdapterFactory.getContainmentLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d85250d89L, 0x671ab00d8527dabeL, "state");
     /*package*/ static final SContainmentLink condition$_4L3 = MetaAdapterFactory.getContainmentLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d8527da4aL, 0x68e402f1430687a7L, "condition");
-    /*package*/ static final SContainmentLink actions$9$CY = MetaAdapterFactory.getContainmentLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d8527da44L, 0x671ab00d8527da47L, "actions");
   }
 
   private static final class PROPS {

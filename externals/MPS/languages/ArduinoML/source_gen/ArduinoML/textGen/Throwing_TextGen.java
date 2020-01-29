@@ -14,14 +14,14 @@ import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
 import org.jetbrains.mps.openapi.language.SReferenceLink;
 import org.jetbrains.mps.openapi.language.SProperty;
 
-public class Transition_TextGen extends TextGenDescriptorBase {
+public class Throwing_TextGen extends TextGenDescriptorBase {
   @Override
   public void generateText(final TextGenContext ctx) {
     final TextGenSupport tgs = new TextGenSupport(ctx);
     tgs.append("if (");
     tgs.newLine();
     {
-      Iterable<SNode> collection = SLinkOperations.getChildren(ctx.getPrimaryInput(), LINKS.condition$_4L3);
+      Iterable<SNode> collection = SLinkOperations.getChildren(ctx.getPrimaryInput(), LINKS.condition$idar);
       final SNode lastItem = Sequence.fromIterable(collection).last();
       for (SNode item : collection) {
         tgs.appendNode(item);
@@ -39,21 +39,22 @@ public class Transition_TextGen extends TextGenDescriptorBase {
     tgs.append("time = millis();");
     tgs.newLine();
     tgs.indent();
-    tgs.append("state_");
-    tgs.append(SPropertyOperations.getString(SLinkOperations.getTarget(ctx.getPrimaryInput(), LINKS.target$9FA3), PROPS.name$tAp1));
-    tgs.append("();");
-    tgs.newLine();
+    tgs.append("throwing(");
+    tgs.append(String.valueOf(SPropertyOperations.getInteger(ctx.getPrimaryInput(), PROPS.codeError$lQZw)));
+    tgs.append(", ");
+    tgs.append(String.valueOf(SPropertyOperations.getInteger(SLinkOperations.getTarget(ctx.getPrimaryInput(), LINKS.led$kH99), PROPS.pin$wSUV)));
+    tgs.append(");");
     ctx.getBuffer().area().decreaseIndent();
     tgs.append("}");
-    tgs.newLine();
   }
 
   private static final class LINKS {
-    /*package*/ static final SContainmentLink condition$_4L3 = MetaAdapterFactory.getContainmentLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d8527da4aL, 0x68e402f1430687a7L, "condition");
-    /*package*/ static final SReferenceLink target$9FA3 = MetaAdapterFactory.getReferenceLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d8527da4aL, 0x671ab00d8527da95L, "target");
+    /*package*/ static final SContainmentLink condition$idar = MetaAdapterFactory.getContainmentLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x68e402f1430a434cL, 0x68e402f1430a43b5L, "condition");
+    /*package*/ static final SReferenceLink led$kH99 = MetaAdapterFactory.getReferenceLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x68e402f1430a434cL, 0x68e402f1430a4415L, "led");
   }
 
   private static final class PROPS {
-    /*package*/ static final SProperty name$tAp1 = MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name");
+    /*package*/ static final SProperty codeError$lQZw = MetaAdapterFactory.getProperty(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x68e402f1430a434cL, 0x68e402f1430bd449L, "codeError");
+    /*package*/ static final SProperty pin$wSUV = MetaAdapterFactory.getProperty(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d85250d63L, 0x671ab00d85250d7fL, "pin");
   }
 }
