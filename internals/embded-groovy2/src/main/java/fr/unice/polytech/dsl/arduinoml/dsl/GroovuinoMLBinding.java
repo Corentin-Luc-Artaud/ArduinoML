@@ -2,6 +2,7 @@ package fr.unice.polytech.dsl.arduinoml.dsl;
 
 import java.util.Map;
 
+import fr.unice.polytech.dsl.arduinoml.App;
 import groovy.lang.Binding;
 import groovy.lang.Script;
 
@@ -10,9 +11,12 @@ public class GroovuinoMLBinding extends Binding {
 	private Script script;
 	
 	private GroovuinoMLModel model;
+
+	private App app;
 	
 	public GroovuinoMLBinding() {
 		super();
+		app = new App();
 	}
 	
 	@SuppressWarnings("rawtypes")

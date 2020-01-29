@@ -24,6 +24,7 @@ public class GroovuinoMLModel {
 	}
 	
 	public void createSensor(String name, Integer pinNumber) {
+		System.err.println("create sensor !!!");
 		app.createSensor(name, pinNumber);
 		this.binding.setVariable(name, app.getSensor(name));
 	}
@@ -34,7 +35,7 @@ public class GroovuinoMLModel {
 	}
 	
 	public void createState(String name, List<Action> actions) {
-
+		//Action action = //new Action(actuator, status)
 		app.createState(name);
 		State state = app.getState(name);
 		actions.forEach(a -> state.addAction(a));
@@ -64,4 +65,10 @@ public class GroovuinoMLModel {
 		return null;
 		//return codeGenerator.getResult();
 	}
+
+	public App getApp() {
+		return app;
+	}
+
+	
 }

@@ -4,6 +4,9 @@ import org.codehaus.groovy.control.CompilerConfiguration
 import org.codehaus.groovy.control.customizers.SecureASTCustomizer
 import fr.unice.polytech.dsl.arduinoml.kernel.Status
 
+import fr.unice.polytech.dsl.arduinoml.kernel.App
+
+
 class GroovuinoMLDSL {
 	private GroovyShell shell
 	private CompilerConfiguration configuration
@@ -11,10 +14,11 @@ class GroovuinoMLDSL {
 	private GroovuinoMLBasescript basescript
 	
 	GroovuinoMLDSL() {
+		app = new App()
 		binding = new GroovuinoMLBinding()
 		binding.setGroovuinoMLModel(new GroovuinoMLModel(binding));
 		configuration = getDSLConfiguration()
-		configuration.setScriptBaseClass("main.groovy.groovuinoml.dsl.GroovuinoMLBasescript")
+		configuration.setScriptBaseClass("fr.unice.polytech.dsl.arduinoml.dsl.GroovuinoMLBaseCustom")
 		shell = new GroovyShell(configuration)
 		
 		binding.setVariable("high", Status.HIGH)
