@@ -3,13 +3,11 @@ package fr.unice.polytech.dsl.arduinoml.kernel;
 import fr.unice.polytech.dsl.arduinoml.kernel.behavour.Visitable;
 import fr.unice.polytech.dsl.arduinoml.kernel.behavour.Visitor;
 
-public class Action implements Visitable {
+public abstract class Action implements Visitable {
     private Actuator actuator;
-    private Status status;
 
-    public Action(Actuator actuator, Status status) {
+    public Action(Actuator actuator) {
         this.actuator = actuator;
-        this.status = status;
     }
 
     /**
@@ -19,15 +17,7 @@ public class Action implements Visitable {
         return actuator;
     }
 
-    /**
-     * @return the status
-     */
-    public Status getStatus() {
-        return status;
-    }
 
     @Override
-    public void acceptVisitor(Visitor v) {
-        v.visite(this);
-    }
+    public abstract void acceptVisitor(Visitor v);
 }

@@ -1,0 +1,16 @@
+/home/vanargand/workspace/ArduinoML/kernel/kernel/src/main/java/fr/unice/polytech/dsl/arduinoml/kernel/NamedElement.java
+/home/vanargand/workspace/ArduinoML/kernel/kernel/src/main/java/fr/unice/polytech/dsl/arduinoml/kernel/Condition.java
+/home/vanargand/workspace/ArduinoML/kernel/kernel/src/main/java/fr/unice/polytech/dsl/arduinoml/kernel/ErrorState.java
+/home/vanargand/workspace/ArduinoML/kernel/kernel/src/main/java/fr/unice/polytech/dsl/arduinoml/kernel/Status.java
+/home/vanargand/workspace/ArduinoML/kernel/kernel/src/main/java/fr/unice/polytech/dsl/arduinoml/kernel/Bloc.java
+/home/vanargand/workspace/ArduinoML/kernel/kernel/src/main/java/fr/unice/polytech/dsl/arduinoml/kernel/behavour/ToWire.java
+/home/vanargand/workspace/ArduinoML/kernel/kernel/src/main/java/fr/unice/polytech/dsl/arduinoml/kernel/Sensor.java
+/home/vanargand/workspace/ArduinoML/kernel/kernel/src/main/java/fr/unice/polytech/dsl/arduinoml/kernel/App.java
+/home/vanargand/workspace/ArduinoML/kernel/kernel/src/main/java/fr/unice/polytech/dsl/arduinoml/kernel/Action.java
+/home/vanargand/workspace/ArduinoML/kernel/kernel/src/main/java/fr/unice/polytech/dsl/arduinoml/kernel/Actuator.java
+/home/vanargand/workspace/ArduinoML/kernel/kernel/src/main/java/fr/unice/polytech/dsl/arduinoml/kernel/behavour/Visitable.java
+/home/vanargand/workspace/ArduinoML/kernel/kernel/src/main/java/fr/unice/polytech/dsl/arduinoml/kernel/RealState.java
+/home/vanargand/workspace/ArduinoML/kernel/kernel/src/main/java/fr/unice/polytech/dsl/arduinoml/kernel/Transition.java
+/home/vanargand/workspace/ArduinoML/kernel/kernel/src/main/java/fr/unice/polytech/dsl/arduinoml/kernel/behavour/Visitor.java
+/home/vanargand/workspace/ArduinoML/kernel/kernel/src/main/java/fr/unice/polytech/dsl/arduinoml/kernel/ActionStandard.java
+/home/vanargand/workspace/ArduinoML/kernel/kernel/src/main/java/fr/unice/polytech/dsl/arduinoml/kernel/State.java

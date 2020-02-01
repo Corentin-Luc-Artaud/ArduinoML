@@ -15,6 +15,7 @@ public class App extends NamedElement implements Visitable {
 
     private Map<String, State> states;
     private State initialState;
+    private Actuator errorActuator;
 
     public App() {
         sensors = new HashMap<>();
@@ -80,7 +81,17 @@ public class App extends NamedElement implements Visitable {
     }
 
     public State createState(String name) {
-        State res = new State(name);
+        if (this.states.containsKey(name)) throw new RuntimeException("state "+name+"already declared");
+        State res = new RealState(name);
+        this.states.put(name, res);
+        return res;
+    }
+
+    public State createErrorState(int code, String actuator) {
+        if (errorActuator == null) throw new RuntimeException("error should be enabled");
+        String name = "error_"+code;
+        if (this.states.containsKey(name)) throw new RuntimeException("state "+name+"already declared");
+        State res = new ErrorState(name, this.getActuator(actuator), code);
         this.states.put(name, res);
         return res;
     }
@@ -93,6 +104,11 @@ public class App extends NamedElement implements Visitable {
         } 
     }
 
+    public void setErrorActuator(int pin) {
+        if(this.errorActuator != null) throw new RuntimeException("error already enabled");
+        this.errorActuator = new Actuator("error", pin);
+    }
+
     /**
      * @return the initialState
      */
@@ -100,6 +116,16 @@ public class App extends NamedElement implements Visitable {
         return initialState;
     }
 
-    
+    public boolean containsState(String name) {
+        return states.keySet().contains(name);
+    }
+
+    public boolean containsActuator(String name) {
+        return actuators.keySet().contains(name);
+    } 
+
+    public boolean containsSensor(String name) {
+        return sensors.keySet().contains(name);
+    }
 
 }

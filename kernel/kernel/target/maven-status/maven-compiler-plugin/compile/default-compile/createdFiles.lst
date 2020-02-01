@@ -1,0 +1,16 @@
+fr/unice/polytech/dsl/arduinoml/kernel/behavour/ToWire.class
+fr/unice/polytech/dsl/arduinoml/kernel/Condition.class
+fr/unice/polytech/dsl/arduinoml/kernel/Status.class
+fr/unice/polytech/dsl/arduinoml/kernel/Bloc.class
+fr/unice/polytech/dsl/arduinoml/kernel/Actuator.class
+fr/unice/polytech/dsl/arduinoml/kernel/ActionStandard.class
+fr/unice/polytech/dsl/arduinoml/kernel/ErrorState.class
+fr/unice/polytech/dsl/arduinoml/kernel/NamedElement.class
+fr/unice/polytech/dsl/arduinoml/kernel/App.class
+fr/unice/polytech/dsl/arduinoml/kernel/Action.class
+fr/unice/polytech/dsl/arduinoml/kernel/State.class
+fr/unice/polytech/dsl/arduinoml/kernel/Transition.class
+fr/unice/polytech/dsl/arduinoml/kernel/behavour/Visitable.class
+fr/unice/polytech/dsl/arduinoml/kernel/Sensor.class
+fr/unice/polytech/dsl/arduinoml/kernel/RealState.class
+fr/unice/polytech/dsl/arduinoml/kernel/behavour/Visitor.class

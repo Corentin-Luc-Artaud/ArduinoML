@@ -2,10 +2,12 @@ package fr.unice.polytech.dsl.arduinoml.kernel.behavour;
 
 import java.io.PrintStream;
 
-import fr.unice.polytech.dsl.arduinoml.kernel.Action;
+import fr.unice.polytech.dsl.arduinoml.kernel.ActionStandard;
 import fr.unice.polytech.dsl.arduinoml.kernel.App;
 import fr.unice.polytech.dsl.arduinoml.kernel.Bloc;
 import fr.unice.polytech.dsl.arduinoml.kernel.Condition;
+import fr.unice.polytech.dsl.arduinoml.kernel.ErrorState;
+import fr.unice.polytech.dsl.arduinoml.kernel.RealState;
 import fr.unice.polytech.dsl.arduinoml.kernel.State;
 import fr.unice.polytech.dsl.arduinoml.kernel.Transition;
 
@@ -39,7 +41,7 @@ public class ToWire implements Visitor {
     }
 
     @Override
-    public void visite(State s) {
+    public void visite(RealState s) {
         out.println("\n");
         out.println("void state_"+s.getName()+"() {");
         s.getActions().forEach(a -> a.acceptVisitor(this));
@@ -51,13 +53,12 @@ public class ToWire implements Visitor {
     }
 
     @Override
-    public void visite(Action a) {
+    public void visite(ActionStandard a) {
         out.println("\tdigitalWrite("+a.getActuator().getPin()+", "+a.getStatus().toString()+");");
     }
 
     @Override
     public void visite(Condition c) {
-        // TODO Auto-generated method stub
         out.print("digitalRead("+c.getSensor().getPin()+") == "+c.getStatus()+" && ");
     }
 
@@ -66,6 +67,29 @@ public class ToWire implements Visitor {
         out.print("\tif (");
         t.getConditions().forEach(c -> c.acceptVisitor(this));
         out.println(" guard) { time = millis(); state_"+t.getDestination().getName()+"(); }");
+    }
+
+    @Override
+    public void visite(ErrorState s) {
+        out.println("\n");
+        out.println("void state_"+s.getName()+"() {");
+        out.println("//actions");
+        s.getActions().forEach(a -> a.acceptVisitor(this));
+
+        out.println("//error");
+        out.println("\tfor (int i = 0; i < "+s.getErrorCode()+" ++i) {");
+        
+        out.println("\t\tdigitalwrite("+s.getActuator().getPin()+", high);");
+        out.println("\t\tdelay(100)");
+        out.println("\t\tdigitalwrite("+s.getActuator().getPin()+", low);");
+        out.println("\t\tdelay(100)");
+        
+        out.println("\t}");
+        out.println("delay(1000)");
+
+        out.println("\tstate_"+s.getName()+"();");
+
+        out.println("}\n");
     }
 
 }
