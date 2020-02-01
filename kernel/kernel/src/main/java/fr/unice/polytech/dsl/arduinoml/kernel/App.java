@@ -15,7 +15,6 @@ public class App extends NamedElement implements Visitable {
 
     private Map<String, State> states;
     private State initialState;
-    private Actuator errorActuator;
 
     public App() {
         sensors = new HashMap<>();

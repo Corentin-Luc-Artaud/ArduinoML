@@ -77,15 +77,15 @@ public class ToWire implements Visitor {
         s.getActions().forEach(a -> a.acceptVisitor(this));
 
         out.println("//error");
-        out.println("\tfor (int i = 0; i < "+s.getErrorCode()+" ++i) {");
+        out.println("\tfor (int i = 0; i < "+s.getErrorCode()+"; ++i) {");
         
-        out.println("\t\tdigitalwrite("+s.getActuator().getPin()+", high);");
+        out.println("\t\tdigitalWrite("+s.getActuator().getPin()+", HIGH);");
         out.println("\t\tdelay(100)");
-        out.println("\t\tdigitalwrite("+s.getActuator().getPin()+", low);");
-        out.println("\t\tdelay(100)");
+        out.println("\t\tdigitalWrite("+s.getActuator().getPin()+", LOW);");
+        out.println("\t\tdelay(100);");
         
         out.println("\t}");
-        out.println("delay(1000)");
+        out.println("delay(1000);");
 
         out.println("\tstate_"+s.getName()+"();");
 
