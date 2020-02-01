@@ -26,6 +26,7 @@ public abstract class State extends NamedElement implements Visitable {
     }
 
     public  abstract void addOutcomming(Transition t);
+    public abstract void addError(Transition t);
 
     @Override
     public abstract void acceptVisitor(Visitor v);

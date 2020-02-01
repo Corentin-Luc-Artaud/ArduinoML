@@ -24,7 +24,6 @@ public class AppTest
     public void testApp()
     {
         App app = new App();
-        app.setErrorActuator(1);
         app.createSensor("but1", 9);
         app.createActuator("led1", 12);
 
@@ -37,7 +36,7 @@ public class AppTest
         .addCondition(new Condition(app.getSensor("but1"), Status.HIGH)));
         
         app.createErrorState(3, "led1");
-        app.getState("off").addOutcomming(new Transition(app.getState("error_3")).addCondition(new Condition(app.getSensor("but1"), Status.LOW)));
+        app.getState("off").addError(new Transition(app.getState("error_3")).addCondition(new Condition(app.getSensor("but1"), Status.LOW)));
 
 
 

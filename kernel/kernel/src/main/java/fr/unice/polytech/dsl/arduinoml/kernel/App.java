@@ -87,7 +87,6 @@ public class App extends NamedElement implements Visitable {
     }
 
     public State createErrorState(int code, String actuator) {
-        if (errorActuator == null) throw new RuntimeException("error should be enabled");
         String name = "error_"+code;
         if (this.states.containsKey(name)) throw new RuntimeException("state "+name+"already declared");
         State res = new ErrorState(name, this.getActuator(actuator), code);
@@ -101,11 +100,6 @@ public class App extends NamedElement implements Visitable {
         } else {
             throw new RuntimeException("state " + name + " undefined");
         } 
-    }
-
-    public void setErrorActuator(int pin) {
-        if(this.errorActuator != null) throw new RuntimeException("error already enabled");
-        this.errorActuator = new Actuator("error", pin);
     }
 
     /**

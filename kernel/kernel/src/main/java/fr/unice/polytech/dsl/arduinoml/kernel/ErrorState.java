@@ -36,4 +36,9 @@ public class ErrorState extends State {
         return errorCode;
     }
 
+    @Override
+    public void addError(Transition t) {
+        throw new UnsupportedOperationException("Error states are final states");
+    }
+
 }

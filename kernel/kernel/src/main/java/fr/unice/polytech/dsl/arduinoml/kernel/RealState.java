@@ -7,10 +7,12 @@ import fr.unice.polytech.dsl.arduinoml.kernel.behavour.Visitor;
 
 public class RealState extends State {
     private List<Transition> outcomings;
+    private List<Transition> errorTransitions;
 
     public RealState (String name) {
         super(name);
         outcomings = new ArrayList<>();
+        errorTransitions = new ArrayList<>();
     }
 
     @Override
@@ -23,7 +25,17 @@ public class RealState extends State {
         this.outcomings.add(t);
     }
 
+    public void addError(Transition t) {
+        this.errorTransitions.add(t);
+    }
     
+
+    /**
+     * @return the errorTransitions
+     */
+    public List<Transition> getErrorTransitions() {
+        return errorTransitions;
+    }
 
     /**
      * @return the outcomings

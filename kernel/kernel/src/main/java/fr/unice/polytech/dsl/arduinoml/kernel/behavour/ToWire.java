@@ -44,8 +44,13 @@ public class ToWire implements Visitor {
     public void visite(RealState s) {
         out.println("\n");
         out.println("void state_"+s.getName()+"() {");
+        
+        out.println("//actions");
         s.getActions().forEach(a -> a.acceptVisitor(this));
         out.println("\tboolean guard = millis() - time > debounce;");
+        out.println("//error");
+        s.getErrorTransitions().forEach(t -> t.acceptVisitor(this));
+        out.println("//transitions");
         s.getOutcomings().forEach(t -> t.acceptVisitor(this));
         out.println("\telse { state_"+s.getName()+"(); }");
 
