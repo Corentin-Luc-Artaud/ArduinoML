@@ -316,7 +316,7 @@
       </node>
       <node concept="FV$6X" id="6z$0J5335NM" role="FV$qL">
         <property role="FVXqS" value="3" />
-        <ref role="FV$r$" node="6sqG0Q59rEx" resolve="red_led" />
+        <ref role="FV$r$" node="6z$0J532$c7" resolve="error_led" />
         <node concept="FSlIj" id="7SND3L27tUX" role="FV$54">
           <property role="FSCEA" value="6sqG0Q59XEb/true" />
           <ref role="FSlIk" node="6z$0J532$cd" resolve="button1" />
