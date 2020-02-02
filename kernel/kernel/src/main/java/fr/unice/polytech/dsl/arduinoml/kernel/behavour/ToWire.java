@@ -107,7 +107,7 @@ public class ToWire implements Visitor {
         return new String(outbytes.toByteArray());
     }
 
-    public void PrintResult() {
+    public void printResult() {
         System.out.println(getResult());
     }
 

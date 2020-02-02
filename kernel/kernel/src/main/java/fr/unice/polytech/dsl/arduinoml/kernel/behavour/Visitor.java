@@ -16,4 +16,7 @@ public interface Visitor {
     public void visite(ActionStandard a);
     public void visite(Condition c);
     public void visite(Transition t);
+
+    public String getResult();
+    public void printResult();
 }

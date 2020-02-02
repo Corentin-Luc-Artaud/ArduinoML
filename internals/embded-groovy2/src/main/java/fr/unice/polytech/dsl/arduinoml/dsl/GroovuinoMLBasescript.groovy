@@ -14,9 +14,9 @@ import fr.unice.polytech.dsl.arduinoml.kernel.App
 import fr.unice.polytech.dsl.arduinoml.kernel.behavour.Visitor;
 import fr.unice.polytech.dsl.arduinoml.kernel.behavour.ToWire;
 
-abstract class GroovuinoMLBaseCustom extends Script {
 
-    App app
+abstract class GroovuinoMLBasescript extends Script {
+	 App app
 
 	// sensor "name" pin n
 	def sensor(String name) {
@@ -67,14 +67,15 @@ abstract class GroovuinoMLBaseCustom extends Script {
 			[from: {state -> 
 				State from_state = app.getState(state)
 				from_state.addError(transition)
+				def when_closure
 				when_closure = {sensor ->
-					Sensor real_sensor = app.getSensor(sensor)
 					[becomes: {status -> 
+						Sensor real_sensor = app.getSensor(sensor)
 						Status real_status = Status.valueOf(status.toUpperCase())
 
 						transition.addCondition(new Condition(real_sensor, real_status))
+						[and: when_closure]
 					}]
-					[and: when_closure]
 				}
 
 				[when: when_closure]
@@ -89,13 +90,15 @@ abstract class GroovuinoMLBaseCustom extends Script {
 			State to_state = app.getState(state2)
 			Transition transition = new Transition(to_state)
 			from_state.addOutcomming(transition)
+
+			def when_closure
 			when_closure = { sensor ->
-				Sensor real_sensor = app.getSensor(sensor)
 				[becomes: { status -> 
+					Sensor real_sensor = app.getSensor(sensor)
 					Status real_status = Status.valueOf(status.toUpperCase())
 					transition.addCondition(new Condition(real_sensor, real_status))
+					[and : when_closure]
 				}]
-				[and : when_closure]
 			}
 			[when: when_closure]
 		}]

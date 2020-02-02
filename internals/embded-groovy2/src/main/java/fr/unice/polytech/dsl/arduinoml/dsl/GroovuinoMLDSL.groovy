@@ -2,27 +2,23 @@ package fr.unice.polytech.dsl.arduinoml.dsl
 
 import org.codehaus.groovy.control.CompilerConfiguration
 import org.codehaus.groovy.control.customizers.SecureASTCustomizer
-import fr.unice.polytech.dsl.arduinoml.kernel.Status
-
-import fr.unice.polytech.dsl.arduinoml.kernel.App
-import fr.unice.polytech.dsl.arduinoml.dsl.GroovuinoMLBaseCustom
-
+import fr.unice.polytech.dsl.arduinoml.kernel.Status;
 
 class GroovuinoMLDSL {
 	private GroovyShell shell
 	private CompilerConfiguration configuration
-	private GroovuinoMLBinding binding
-	private GroovuinoMLBaseCustom basescript
+	//private GroovuinoMLBinding binding
+	private GroovuinoMLBasescript basescript
 	
 	GroovuinoMLDSL() {
-		binding = new GroovuinoMLBinding()
-		binding.setGroovuinoMLModel(new GroovuinoMLModel(binding));
+		//binding = new GroovuinoMLBinding()
+		//binding.setGroovuinoMLModel(new GroovuinoMLModel(binding));
 		configuration = getDSLConfiguration()
-		configuration.setScriptBaseClass("fr.unice.polytech.dsl.arduinoml.dsl.GroovuinomlBaseCustom")
+		configuration.setScriptBaseClass("fr.unice.polytech.dsl.arduinoml.dsl.GroovuinoMLBasescript")
 		shell = new GroovyShell(configuration)
 		
-		binding.setVariable("high", Status.HIGH)
-		binding.setVariable("low", Status.LOW)
+		//binding.setVariable("high", Status.HIGH)
+		//binding.setVariable("low", Status.LOW)
 	}
 	
 	private static CompilerConfiguration getDSLConfiguration() {
@@ -61,8 +57,8 @@ class GroovuinoMLDSL {
 	void eval(File scriptFile) {
 		Script script = shell.parse(scriptFile)
 		
-		binding.setScript(script)
-		script.setBinding(binding)
+		//binding.setScript(script)
+		//script.setBinding(binding)
 		
 		script.run()
 	}
