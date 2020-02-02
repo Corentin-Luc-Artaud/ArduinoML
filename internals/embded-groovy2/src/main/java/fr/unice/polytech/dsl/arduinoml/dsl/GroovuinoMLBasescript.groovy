@@ -57,7 +57,7 @@ abstract class GroovuinoMLBasescript extends Script {
 	def error(code) {
 
 		[on: {actuator -> 
-			name = "error_"+code+"_on_"+actuator
+			name = "error_"+code
 			if (app.containsState(name)){
 				app.createErrorState(code, actuator);
 			}

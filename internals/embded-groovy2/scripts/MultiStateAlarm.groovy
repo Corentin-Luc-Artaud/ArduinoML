@@ -1,11 +1,11 @@
 sensor "button" pin 9
 actuator "led" pin 12
-actuator "buzzer" pin 11
+actuator "buzzer" pin 10
 
 
-state "iddle" means "led1" becomes "low" and "buzzer" becomes "low"
+state "iddle" means "led" becomes "low" and "buzzer" becomes "low"
 state "led_on" means "led" becomes "high" and "buzzer" becomes "low"
-state "buzzer_on" means "buzzer" "becomes" "high" and "led" becomes "low"
+state "buzzer_on" means "buzzer" becomes "high" and "led" becomes "low"
 
 initial "iddle"
 

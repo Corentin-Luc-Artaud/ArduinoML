@@ -1,5 +1,5 @@
 sensor "but1" pin 9
-sensor "but2" pin 10
+sensor "but2" pin 8
 actuator "buzzer" pin 12
 
 state "iddle" means "buzzer" becomes "low"

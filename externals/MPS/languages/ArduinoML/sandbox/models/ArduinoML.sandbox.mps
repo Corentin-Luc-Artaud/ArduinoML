@@ -161,7 +161,7 @@
     </node>
     <node concept="3yfVQc" id="6z$0J532jQ0" role="3yfVQr">
       <property role="TrG5h" value="buzzer" />
-      <property role="3yfVPM" value="11" />
+      <property role="3yfVPM" value="10" />
     </node>
     <node concept="3yfVQ5" id="6z$0J532jQ8" role="3yfVQr">
       <property role="TrG5h" value="button" />
@@ -173,15 +173,15 @@
     <ref role="3yfmFc" node="6z$0J532jR8" resolve="iddle" />
     <node concept="3yfVQc" id="6z$0J532jRq" role="3yfVQr">
       <property role="TrG5h" value="buzzer" />
-      <property role="3yfVPM" value="9" />
+      <property role="3yfVPM" value="10" />
     </node>
     <node concept="3yfVQ5" id="6z$0J532jRc" role="3yfVQr">
       <property role="TrG5h" value="but1" />
-      <property role="3yfVPM" value="12" />
+      <property role="3yfVPM" value="8" />
     </node>
     <node concept="3yfVQ5" id="6z$0J532jRi" role="3yfVQr">
       <property role="TrG5h" value="but2" />
-      <property role="3yfVPM" value="10" />
+      <property role="3yfVPM" value="9" />
     </node>
     <node concept="3yfmD9" id="6z$0J532jR8" role="3yfmEN">
       <property role="TrG5h" value="iddle" />
@@ -257,7 +257,7 @@
       <node concept="3yfmD7" id="6z$0J532$bL" role="3ycAs1">
         <ref role="3yfmEo" node="6z$0J532$br" resolve="iddle" />
         <node concept="FSlIj" id="6z$0J532$bY" role="FSClm">
-          <property role="FSCEA" value="6sqG0Q59XEa/false" />
+          <property role="FSCEA" value="6sqG0Q59XEb/true" />
           <ref role="FSlIk" node="6sqG0Q59B6V" resolve="button" />
         </node>
       </node>
@@ -268,11 +268,11 @@
     <ref role="3yfmFc" node="6z$0J532jR8" resolve="iddle" />
     <node concept="3yfVQc" id="6z$0J532$c7" role="3yfVQr">
       <property role="TrG5h" value="error_led" />
-      <property role="3yfVPM" value="8" />
+      <property role="3yfVPM" value="12" />
     </node>
     <node concept="3yfVQc" id="7SND3L2613H" role="3yfVQr">
       <property role="TrG5h" value="green_led" />
-      <property role="3yfVPM" value="12" />
+      <property role="3yfVPM" value="10" />
     </node>
     <node concept="3yfVQ5" id="6z$0J532$cd" role="3yfVQr">
       <property role="TrG5h" value="button1" />
@@ -280,7 +280,7 @@
     </node>
     <node concept="3yfVQ5" id="6z$0J532$cl" role="3yfVQr">
       <property role="TrG5h" value="button2" />
-      <property role="3yfVPM" value="10" />
+      <property role="3yfVPM" value="8" />
     </node>
     <node concept="3yfmD9" id="6z$0J532$c3" role="3yfmEN">
       <property role="TrG5h" value="iddle" />
