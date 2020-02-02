@@ -88,7 +88,7 @@ public class ToWire implements Visitor {
         out.println("\tfor (int i = 0; i < "+s.getErrorCode()+"; ++i) {");
         
         out.println("\t\tdigitalWrite("+s.getActuator().getPin()+", HIGH);");
-        out.println("\t\tdelay(100)");
+        out.println("\t\tdelay(100);");
         out.println("\t\tdigitalWrite("+s.getActuator().getPin()+", LOW);");
         out.println("\t\tdelay(100);");
         

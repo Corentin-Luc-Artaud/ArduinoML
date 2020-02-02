@@ -1,81 +1,58 @@
-/** Generation code for the application ExceptionThrowing **/
-// Declaring sensors and actuators 
-void setup() {
-  pinMode(8, OUTPUT);
-pinMode(12, OUTPUT);
-pinMode(9, INPUT);
-pinMode(10, INPUT);}
-
-// Declaring throwing method
-void throwing(int errorCode, int ledPin) {
-  while(true) {
-  for (int i = 0; i < errorCode; i++) {
-    digitalWrite(ledPin, HIGH);
-    delay(250);
-    digitalWrite(ledPin, LOW);
-delay(250);
-  }
-  delay(500);
-  }
+//custom arduino ml
+void setup (){
+	pinMode(12, OUTPUT);
+	pinMode(10, INPUT);
+	pinMode(9, INPUT);
+	pinMode(8, OUTPUT);
 }
-// Declaring global variable
+
+// Behavioral concepts
 long time = 0; long debounce = 200;
-// Declaring states
-void state_iddle() {
-  digitalWrite(8, LOW);
-digitalWrite(12, LOW);
-  boolean guard = millis() - time > debounce;
-  if (
-digitalRead(9) == HIGH && digitalRead(10) == HIGH && 
-guard) {
-    time = millis();
-    throwing(3, 8);}  if (
-digitalRead(9) == HIGH && digitalRead(10) == LOW && 
-guard) {
-    time = millis();
-    state_led_on();
-}
 
-if (
-digitalRead(10) == HIGH && digitalRead(9) == LOW && 
-guard) {
-    time = millis();
-    state_led_on();
-}
-  else {
-    state_iddle();
-  }
-}
 
 
 void state_led_on() {
-  digitalWrite(8, LOW);
-digitalWrite(12, HIGH);
-  boolean guard = millis() - time > debounce;
-  if (
-digitalRead(9) == HIGH && digitalRead(10) == HIGH && 
-guard) {
-    time = millis();
-    throwing(3, 8);}  if (
-digitalRead(9) == HIGH && digitalRead(10) == LOW && 
-guard) {
-    time = millis();
-    state_iddle();
-}
-
-if (
-digitalRead(9) == LOW && digitalRead(10) == HIGH && 
-guard) {
-    time = millis();
-    state_iddle();
-}
-  else {
-    state_led_on();
-  }
+//actions
+	digitalWrite(8, LOW);
+	digitalWrite(12, HIGH);
+	boolean guard = millis() - time > debounce;
+//error
+	if (digitalRead(9) == HIGH && digitalRead(10) == HIGH &&  guard) { time = millis(); state_error_3(); }
+//transitions
+	if (digitalRead(9) == HIGH && digitalRead(10) == LOW &&  guard) { time = millis(); state_iddle(); }
+	if (digitalRead(9) == LOW && digitalRead(10) == HIGH &&  guard) { time = millis(); state_iddle(); }
+	else { state_led_on(); }
 }
 
 
 
-void loop() {
-  state_iddle();
+void state_iddle() {
+//actions
+	digitalWrite(8, LOW);
+	digitalWrite(12, LOW);
+	boolean guard = millis() - time > debounce;
+//error
+	if (digitalRead(9) == HIGH && digitalRead(10) == HIGH &&  guard) { time = millis(); state_error_3(); }
+//transitions
+	if (digitalRead(9) == HIGH && digitalRead(10) == LOW &&  guard) { time = millis(); state_led_on(); }
+	if (digitalRead(10) == HIGH && digitalRead(9) == LOW &&  guard) { time = millis(); state_led_on(); }
+	else { state_iddle(); }
 }
+
+
+
+void state_error_3() {
+//actions
+//error
+	for (int i = 0; i < 3; ++i) {
+		digitalWrite(8, HIGH);
+		delay(100)
+		digitalWrite(8, LOW);
+		delay(100);
+	}
+delay(1000);
+	state_error_3();
+}
+
+// Error Method
+void loop() { state_iddle(); } // Entering init state
