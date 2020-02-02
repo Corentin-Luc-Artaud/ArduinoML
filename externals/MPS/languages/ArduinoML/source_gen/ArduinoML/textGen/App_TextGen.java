@@ -5,116 +5,103 @@ package ArduinoML.textGen;
 import jetbrains.mps.text.rt.TextGenDescriptorBase;
 import jetbrains.mps.text.rt.TextGenContext;
 import jetbrains.mps.text.impl.TextGenSupport;
-import jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations;
-import org.jetbrains.mps.openapi.model.SNode;
+import fr.unice.polytech.dsl.arduinoml.kernel.App;
+import jetbrains.mps.internal.collections.runtime.ListSequence;
 import jetbrains.mps.lang.smodel.generator.smodelAdapter.SLinkOperations;
-import jetbrains.mps.internal.collections.runtime.Sequence;
-import org.jetbrains.mps.openapi.language.SProperty;
-import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
+import jetbrains.mps.internal.collections.runtime.IVisitor;
+import org.jetbrains.mps.openapi.model.SNode;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SNodeOperations;
+import jetbrains.mps.lang.smodel.generator.smodelAdapter.SPropertyOperations;
+import fr.unice.polytech.dsl.arduinoml.kernel.ActionStandard;
+import fr.unice.polytech.dsl.arduinoml.kernel.Status;
+import fr.unice.polytech.dsl.arduinoml.kernel.Transition;
+import fr.unice.polytech.dsl.arduinoml.kernel.Condition;
+import fr.unice.polytech.dsl.arduinoml.kernel.behavour.ToWire;
 import org.jetbrains.mps.openapi.language.SContainmentLink;
+import jetbrains.mps.smodel.adapter.structure.MetaAdapterFactory;
 import org.jetbrains.mps.openapi.language.SReferenceLink;
+import org.jetbrains.mps.openapi.language.SProperty;
 
 public class App_TextGen extends TextGenDescriptorBase {
   @Override
   public void generateText(final TextGenContext ctx) {
     final TextGenSupport tgs = new TextGenSupport(ctx);
-    tgs.append("/** Generation code for the application ");
-    tgs.append(SPropertyOperations.getString(ctx.getPrimaryInput(), PROPS.name$tAp1));
-    tgs.append(" **/");
-    tgs.newLine();
-    tgs.append("// Declaring sensors and actuators ");
-    tgs.newLine();
-    tgs.append("void setup() {");
-    tgs.newLine();
-    ctx.getBuffer().area().increaseIndent();
-    tgs.indent();
-    {
-      Iterable<SNode> collection = SLinkOperations.getChildren(ctx.getPrimaryInput(), LINKS.bricks$wTAv);
-      final SNode lastItem = Sequence.fromIterable(collection).last();
-      for (SNode item : collection) {
-        tgs.appendNode(item);
-        if (item != lastItem) {
-          tgs.append("\n");
+    final App app = new App();
+    ListSequence.fromList(SLinkOperations.getChildren(ctx.getPrimaryInput(), LINKS.bricks$wTAv)).visitAll(new IVisitor<SNode>() {
+      public void visit(SNode brick) {
+        if (SNodeOperations.getConcept(brick).getName().equals("Sensor")) {
+          app.createSensor(SPropertyOperations.getString(brick, PROPS.name$tAp1), SPropertyOperations.getInteger(brick, PROPS.pin$wSUV));
+        }
+        if (SNodeOperations.getConcept(brick).getName().equals("Actuator")) {
+          app.createActuator(SPropertyOperations.getString(brick, PROPS.name$tAp1), SPropertyOperations.getInteger(brick, PROPS.pin$wSUV));
         }
       }
-    }
-    ctx.getBuffer().area().decreaseIndent();
-    tgs.append("}");
-    tgs.newLine();
-    tgs.newLine();
-    tgs.append("// Declaring throwing method");
-    tgs.newLine();
-    tgs.append("void throwing(int errorCode, int ledPin) {");
-    tgs.newLine();
-    ctx.getBuffer().area().increaseIndent();
-    tgs.indent();
-    tgs.append("while(true) {");
-    tgs.newLine();
-    tgs.indent();
-    tgs.append("for (int i = 0; i < errorCode; i++) {");
-    tgs.newLine();
-    ctx.getBuffer().area().increaseIndent();
-    tgs.indent();
-    tgs.append("digitalWrite(ledPin, HIGH);");
-    tgs.newLine();
-    tgs.indent();
-    tgs.append("delay(250);");
-    tgs.newLine();
-    tgs.indent();
-    tgs.append("digitalWrite(ledPin, LOW);");
-    tgs.newLine();
-    tgs.append("delay(250);");
-    tgs.newLine();
-    ctx.getBuffer().area().decreaseIndent();
-    tgs.indent();
-    tgs.append("}");
-    tgs.newLine();
-    tgs.indent();
-    tgs.append("delay(500);");
-    tgs.newLine();
-    tgs.indent();
-    tgs.append("}");
-    tgs.newLine();
-    ctx.getBuffer().area().decreaseIndent();
-    tgs.append("}");
-    tgs.newLine();
-    tgs.append("// Declaring global variable");
-    tgs.newLine();
-    tgs.append("long time = 0; long debounce = 200;");
-    tgs.newLine();
-    tgs.append("// Declaring states");
-    tgs.newLine();
-    {
-      Iterable<SNode> collection = SLinkOperations.getChildren(ctx.getPrimaryInput(), LINKS.state$avWM);
-      final SNode lastItem = Sequence.fromIterable(collection).last();
-      for (SNode item : collection) {
-        tgs.appendNode(item);
-        if (item != lastItem) {
-          tgs.append("\n");
-        }
+    });
+    ListSequence.fromList(SLinkOperations.getChildren(ctx.getPrimaryInput(), LINKS.state$avWM)).visitAll(new IVisitor<SNode>() {
+      public void visit(final SNode state) {
+        app.createState(SPropertyOperations.getString(state, PROPS.name$tAp1));
+        ListSequence.fromList(SLinkOperations.getChildren(state, LINKS.actions$9$CY)).visitAll(new IVisitor<SNode>() {
+          public void visit(SNode action) {
+            app.getState(SPropertyOperations.getString(state, PROPS.name$tAp1)).addAction(new ActionStandard(app.getActuator(SPropertyOperations.getString(SLinkOperations.getTarget(action, LINKS.actuator$9FMC), PROPS.name$tAp1)), (SPropertyOperations.getBoolean(action, PROPS.status$9FLE) ? Status.HIGH : Status.LOW)));
+          }
+        });
       }
-    }
-    tgs.newLine();
-    tgs.newLine();
-    tgs.append("void loop() {");
-    tgs.newLine();
-    ctx.getBuffer().area().increaseIndent();
-    tgs.indent();
-    tgs.append("state_");
-    tgs.append(SPropertyOperations.getString(SLinkOperations.getTarget(ctx.getPrimaryInput(), LINKS.init_state$aw8q), PROPS.name$tAp1));
-    tgs.append("();");
-    tgs.newLine();
-    ctx.getBuffer().area().decreaseIndent();
-    tgs.append("}");
-  }
+    });
+    ListSequence.fromList(SLinkOperations.getChildren(ctx.getPrimaryInput(), LINKS.state$avWM)).visitAll(new IVisitor<SNode>() {
+      public void visit(final SNode state) {
+        ListSequence.fromList(SLinkOperations.getChildren(state, LINKS.transition$DBHR)).visitAll(new IVisitor<SNode>() {
+          public void visit(SNode transition) {
+            final Transition t = new Transition(app.getState(SPropertyOperations.getString(SLinkOperations.getTarget(transition, LINKS.target$9FA3), PROPS.name$tAp1)));
+            ListSequence.fromList(SLinkOperations.getChildren(transition, LINKS.condition$_4L3)).visitAll(new IVisitor<SNode>() {
+              public void visit(SNode condition) {
+                t.addCondition(new Condition(app.getSensor(SPropertyOperations.getString(SLinkOperations.getTarget(condition, LINKS.sensor$P1WY), PROPS.name$tAp1)), (SPropertyOperations.getBoolean(condition, PROPS.status$c$CK) ? Status.HIGH : Status.LOW)));
+              }
+            });
+            app.getState(SPropertyOperations.getString(state, PROPS.name$tAp1)).addOutcomming(t);
+          }
+        });
+        ListSequence.fromList(SLinkOperations.getChildren(state, LINKS.throwing$uxZx)).visitAll(new IVisitor<SNode>() {
+          public void visit(SNode throwing) {
+            app.createErrorState(SPropertyOperations.getInteger(throwing, PROPS.codeError$lQZw), SPropertyOperations.getString(SLinkOperations.getTarget(throwing, LINKS.led$kH99), PROPS.name$tAp1));
+            final Transition t = new Transition(app.getState("error_" + SPropertyOperations.getInteger(throwing, PROPS.codeError$lQZw)));
+            ListSequence.fromList(SLinkOperations.getChildren(throwing, LINKS.condition$idar)).visitAll(new IVisitor<SNode>() {
+              public void visit(SNode condition) {
+                t.addCondition(new Condition(app.getSensor(SPropertyOperations.getString(SLinkOperations.getTarget(condition, LINKS.sensor$P1WY), PROPS.name$tAp1)), (SPropertyOperations.getBoolean(condition, PROPS.status$c$CK) ? Status.HIGH : Status.LOW)));
+              }
+            });
+            app.getState(SPropertyOperations.getString(state, PROPS.name$tAp1)).addError(t);
+          }
+        });
+      }
+    });
 
-  private static final class PROPS {
-    /*package*/ static final SProperty name$tAp1 = MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name");
+    app.setInitialState(app.getState(SPropertyOperations.getString(SLinkOperations.getTarget(ctx.getPrimaryInput(), LINKS.init_state$aw8q), PROPS.name$tAp1)));
+    app.setName(SPropertyOperations.getString(ctx.getPrimaryInput(), PROPS.name$tAp1));
+    ToWire toWire = new ToWire();
+    app.acceptVisitor(toWire);
+    tgs.append(toWire.getResult());
   }
 
   private static final class LINKS {
     /*package*/ static final SContainmentLink bricks$wTAv = MetaAdapterFactory.getContainmentLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d85250d89L, 0x671ab00d85250d96L, "bricks");
     /*package*/ static final SContainmentLink state$avWM = MetaAdapterFactory.getContainmentLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d85250d89L, 0x671ab00d8527dabeL, "state");
+    /*package*/ static final SContainmentLink actions$9$CY = MetaAdapterFactory.getContainmentLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d8527da44L, 0x671ab00d8527da47L, "actions");
+    /*package*/ static final SReferenceLink actuator$9FMC = MetaAdapterFactory.getReferenceLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d8527da49L, 0x671ab00d8527da9aL, "actuator");
+    /*package*/ static final SContainmentLink transition$DBHR = MetaAdapterFactory.getContainmentLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d8527da44L, 0x671ab00d8528d70cL, "transition");
+    /*package*/ static final SReferenceLink target$9FA3 = MetaAdapterFactory.getReferenceLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d8527da4aL, 0x671ab00d8527da95L, "target");
+    /*package*/ static final SContainmentLink condition$_4L3 = MetaAdapterFactory.getContainmentLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d8527da4aL, 0x68e402f1430687a7L, "condition");
+    /*package*/ static final SReferenceLink sensor$P1WY = MetaAdapterFactory.getReferenceLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x68e402f143055962L, 0x68e402f143055965L, "sensor");
+    /*package*/ static final SContainmentLink throwing$uxZx = MetaAdapterFactory.getContainmentLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d8527da44L, 0x68e402f1430a4440L, "throwing");
+    /*package*/ static final SReferenceLink led$kH99 = MetaAdapterFactory.getReferenceLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x68e402f1430a434cL, 0x68e402f1430a4415L, "led");
+    /*package*/ static final SContainmentLink condition$idar = MetaAdapterFactory.getContainmentLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x68e402f1430a434cL, 0x68e402f1430a43b5L, "condition");
     /*package*/ static final SReferenceLink init_state$aw8q = MetaAdapterFactory.getReferenceLink(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d85250d89L, 0x671ab00d8527dac1L, "init_state");
+  }
+
+  private static final class PROPS {
+    /*package*/ static final SProperty name$tAp1 = MetaAdapterFactory.getProperty(0xceab519525ea4f22L, 0x9b92103b95ca8c0cL, 0x110396eaaa4L, 0x110396ec041L, "name");
+    /*package*/ static final SProperty pin$wSUV = MetaAdapterFactory.getProperty(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d85250d63L, 0x671ab00d85250d7fL, "pin");
+    /*package*/ static final SProperty status$9FLE = MetaAdapterFactory.getProperty(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x671ab00d8527da49L, 0x671ab00d8527da98L, "status");
+    /*package*/ static final SProperty status$c$CK = MetaAdapterFactory.getProperty(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x68e402f143055962L, 0x68e402f143068857L, "status");
+    /*package*/ static final SProperty codeError$lQZw = MetaAdapterFactory.getProperty(0x21222a0d7ed14311L, 0xa572182d14b72a71L, 0x68e402f1430a434cL, 0x68e402f1430bd449L, "codeError");
   }
 }

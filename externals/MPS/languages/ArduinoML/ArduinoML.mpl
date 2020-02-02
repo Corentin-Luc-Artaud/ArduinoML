@@ -4,6 +4,9 @@
     <modelRoot contentPath="${module}" type="default">
       <sourceRoot location="models" />
     </modelRoot>
+    <modelRoot contentPath="/home/octav/Documents/Polytech/Git/ArduinoML/kernel" type="java_source_stubs">
+      <sourceRoot location="kernel/src/main/java/fr" />
+    </modelRoot>
   </models>
   <facets>
     <facet type="java">
@@ -61,7 +64,9 @@
       <mapping-priorities />
     </generator>
   </generators>
-  <sourcePath />
+  <sourcePath>
+    <source path="/home/octav/Documents/Polytech/Git/ArduinoML/kernel/kernel/src/main/java" />
+  </sourcePath>
   <dependencies>
     <dependency reexport="false">2d3c70e9-aab2-4870-8d8d-6036800e4103(jetbrains.mps.kernel)</dependency>
   </dependencies>
