@@ -62,7 +62,9 @@ public class App_TextGen extends TextGenDescriptorBase {
         });
         ListSequence.fromList(SLinkOperations.getChildren(state, LINKS.throwing$uxZx)).visitAll(new IVisitor<SNode>() {
           public void visit(SNode throwing) {
-            app.createErrorState(SPropertyOperations.getInteger(throwing, PROPS.codeError$lQZw), SPropertyOperations.getString(SLinkOperations.getTarget(throwing, LINKS.led$kH99), PROPS.name$tAp1));
+            if (!(app.containsState("error_" + SPropertyOperations.getInteger(throwing, PROPS.codeError$lQZw)))) {
+              app.createErrorState(SPropertyOperations.getInteger(throwing, PROPS.codeError$lQZw), SPropertyOperations.getString(SLinkOperations.getTarget(throwing, LINKS.led$kH99), PROPS.name$tAp1));
+            }
             final Transition t = new Transition(app.getState("error_" + SPropertyOperations.getInteger(throwing, PROPS.codeError$lQZw)));
             ListSequence.fromList(SLinkOperations.getChildren(throwing, LINKS.condition$idar)).visitAll(new IVisitor<SNode>() {
               public void visit(SNode condition) {
@@ -80,6 +82,9 @@ public class App_TextGen extends TextGenDescriptorBase {
     ToWire toWire = new ToWire();
     app.acceptVisitor(toWire);
     tgs.append(toWire.getResult());
+
+
+
   }
 
   private static final class LINKS {
