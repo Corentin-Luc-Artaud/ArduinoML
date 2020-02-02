@@ -1,5 +1,6 @@
 package fr.unice.polytech.dsl.arduinoml.kernel.behavour;
 
+import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import fr.unice.polytech.dsl.arduinoml.kernel.ActionStandard;
@@ -8,14 +9,16 @@ import fr.unice.polytech.dsl.arduinoml.kernel.Bloc;
 import fr.unice.polytech.dsl.arduinoml.kernel.Condition;
 import fr.unice.polytech.dsl.arduinoml.kernel.ErrorState;
 import fr.unice.polytech.dsl.arduinoml.kernel.RealState;
-import fr.unice.polytech.dsl.arduinoml.kernel.State;
 import fr.unice.polytech.dsl.arduinoml.kernel.Transition;
 
 public class ToWire implements Visitor {
     private PrintStream out;
+    private ByteArrayOutputStream outbytes;
 
     public ToWire() {
-        out = System.out;
+        //out = System.out;
+        outbytes = new ByteArrayOutputStream();
+        out = new PrintStream(outbytes);
     }
 
     @Override
@@ -95,6 +98,17 @@ public class ToWire implements Visitor {
         out.println("\tstate_"+s.getName()+"();");
 
         out.println("}\n");
+    }
+
+    /**
+     * @return the result in String
+     */
+    public String getResult() {
+        return new String(outbytes.toByteArray());
+    }
+
+    public void PrintResult() {
+        System.out.println(getResult());
     }
 
 }
