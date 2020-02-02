@@ -2,7 +2,7 @@ package fr.unice.polytech.dsl.arduinoml.dsl;
 
 import java.util.Map;
 
-import fr.unice.polytech.dsl.arduinoml.App;
+import fr.unice.polytech.dsl.arduinoml.kernel.App;
 import groovy.lang.Binding;
 import groovy.lang.Script;
 

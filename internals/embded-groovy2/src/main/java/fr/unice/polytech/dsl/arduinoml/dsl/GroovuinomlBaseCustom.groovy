@@ -2,7 +2,7 @@ package fr.unice.polytech.dsl.arduinoml.dsl
 
 import java.util.List;
 
-import fr.unice.polytech.dsl.arduinoml.kernel.Action
+import fr.unice.polytech.dsl.arduinoml.kernel.ActionStandard
 import fr.unice.polytech.dsl.arduinoml.kernel.State
 import fr.unice.polytech.dsl.arduinoml.kernel.Actuator
 import fr.unice.polytech.dsl.arduinoml.kernel.Sensor
@@ -40,7 +40,7 @@ abstract class GroovuinoMLBaseCustom extends Script {
 			[becomes: { status ->
 				Actuator real_actuator = app.getActuator(actuator)
 				Status real_status = Status.valueOf(status.toUpperCase())
-				Action action = new Action(real_actuator, real_status)
+				ActionStandard action = new ActionStandard(real_actuator, real_status)
 				state.addAction(action)
 				[and: closure]
 			}]
@@ -52,31 +52,62 @@ abstract class GroovuinoMLBaseCustom extends Script {
 	def initial(state) {
 		app.setInitialState(app.getState(state))
 	}
-	
-	// from state1 to state2 when sensor becomes Status
-	def from(state1) {
-		[to: { state2 -> 
-			[when: { sensor ->
-				[becomes: { status -> 
-					State from = app.getState(state1)
-					State to = app.getState(state1)
+
+	// error code on actuator from state when sensor becomes status [and sensor becomes status]*
+	def error(code) {
+
+		[on: {actuator -> 
+			name = "error_"+code+"_on_"+actuator
+			if (app.containsState(name)){
+				app.createErrorState(code, actuator);
+			}
+			State error_state = app.getState("error_"+code)
+			Transition transition = new Transition(error_state)
+
+			[from: {state -> 
+				State from_state = app.getState(state)
+				from_state.addError(transition)
+				when_closure = {sensor ->
 					Sensor real_sensor = app.getSensor(sensor)
-					Status real_status = Status.valueOf(status.toUpperCase())
-					Transition transition = new Transition(to)
-					transition.addCondition(new Condition(real_sensor, real_status))
-					from.addOutcomming(transition)
-				}]
+					[becomes: {status -> 
+						Status real_status = Status.valueOf(status.toUpperCase())
+
+						transition.addCondition(new Condition(real_sensor, real_status))
+					}]
+					[and: when_closure]
+				}
+
+				[when: when_closure]
 			}]
 		}]
 	}
+ 	
+	// from state1 to state2 when sensor becomes Status [and sensor becomes Status]*
+	def from(state1) {
+		State from_state = app.getState(state1)
+		[to: { state2 -> 
+			State to_state = app.getState(state2)
+			Transition transition = new Transition(to_state)
+			from_state.addOutcomming(transition)
+			when_closure = { sensor ->
+				Sensor real_sensor = app.getSensor(sensor)
+				[becomes: { status -> 
+					Status real_status = Status.valueOf(status.toUpperCase())
+					transition.addCondition(new Condition(real_sensor, real_status))
+				}]
+				[and : when_closure]
+			}
+			[when: when_closure]
+		}]
+	}
 
-	//error number from state when sensor becomes status [and sensor becomes status]* 
 	
 	// export name
 	def export(String name) {
         app.setName(name)
         Visitor visitor = new ToWire()
         app.acceptVisitor(visitor)
+		visitor.printResult()
 		//println(((GroovuinoMLBinding) this.getBinding()).getGroovuinoMLModel().generateCode(name).toString())
 	}
 	

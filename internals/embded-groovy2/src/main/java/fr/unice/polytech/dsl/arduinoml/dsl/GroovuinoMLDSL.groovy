@@ -5,20 +5,20 @@ import org.codehaus.groovy.control.customizers.SecureASTCustomizer
 import fr.unice.polytech.dsl.arduinoml.kernel.Status
 
 import fr.unice.polytech.dsl.arduinoml.kernel.App
+import fr.unice.polytech.dsl.arduinoml.dsl.GroovuinoMLBaseCustom
 
 
 class GroovuinoMLDSL {
 	private GroovyShell shell
 	private CompilerConfiguration configuration
 	private GroovuinoMLBinding binding
-	private GroovuinoMLBasescript basescript
+	private GroovuinoMLBaseCustom basescript
 	
 	GroovuinoMLDSL() {
-		app = new App()
 		binding = new GroovuinoMLBinding()
 		binding.setGroovuinoMLModel(new GroovuinoMLModel(binding));
 		configuration = getDSLConfiguration()
-		configuration.setScriptBaseClass("fr.unice.polytech.dsl.arduinoml.dsl.GroovuinoMLBaseCustom")
+		configuration.setScriptBaseClass("fr.unice.polytech.dsl.arduinoml.dsl.GroovuinomlBaseCustom")
 		shell = new GroovyShell(configuration)
 		
 		binding.setVariable("high", Status.HIGH)
